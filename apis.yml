@@ -1,0 +1,20 @@
+aid: hmrc
+url: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/apis.yml
+apis:
+- aid: hmrc:hmrc-api
+  name: HMRC UK Tax Authority API
+  tags:
+  - Government
+  - Tax
+  - UK
+  - SOAP
+  - VAT
+  - Regulatory
+  image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+  humanURL: https://developer.service.hmrc.gov.uk/
+  baseURL: https://api.service.hmrc.gov.uk
+  properties:
+  - url: https://developer.service.hmrc.gov.uk/
+    type: Documentation
+  description: >-
+    HM Revenue & Customs (HMRC) provides APIs for UK tax compliance including VAT submission (Making Tax Digital), corporation tax, PAYE, and customs declarations. APIs use OAuth 2.0 authentication and support both REST and SOAP/XML protocols for regulatory filing.
