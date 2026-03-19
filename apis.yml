@@ -20,6 +20,8 @@ apis:
     type: Reference
   - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
     type: Authentication
+  - url: openapi/hmrc-vat-mtd-openapi.yml
+    type: OpenAPI
   description: >-
     The HMRC VAT (Making Tax Digital) API enables software to submit VAT returns, retrieve VAT obligations, liabilities, payments, penalties, and customer details in compliance with UK Making Tax Digital requirements. Uses OAuth 2.0 authentication with fraud prevention headers required.
 
@@ -133,6 +135,12 @@ common:
     type: Support
   - url: https://www.gov.uk/government/organisations/hm-revenue-customs
     type: Website
+  - url: openapi/hmrc-vat-mtd-openapi.yml
+    type: OpenAPI
+  - url: json-schema/hmrc-vat-return-schema.json
+    type: JSONSchema
+  - url: json-ld/hmrc-context.jsonld
+    type: JSONLDContext
 maintainer:
   name: Kin Lane
   email: kin@apievangelist.com

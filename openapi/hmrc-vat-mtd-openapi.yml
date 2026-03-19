@@ -1,0 +1,478 @@
+openapi: 3.1.0
+info:
+  title: HMRC VAT (Making Tax Digital) API
+  description: >-
+    The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses
+    and agents to submit VAT returns, view VAT obligations, liabilities, and
+    payments, in compliance with UK Making Tax Digital requirements. Requires
+    OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.
+  version: 1.0.0
+  contact:
+    name: HMRC Developer Hub
+    url: https://developer.service.hmrc.gov.uk/
+  license:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+externalDocs:
+  description: HMRC VAT API Documentation
+  url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0
+
+servers:
+  - url: https://api.service.hmrc.gov.uk
+    description: HMRC Production API
+  - url: https://test-api.service.hmrc.gov.uk
+    description: HMRC Sandbox (test) environment
+
+security:
+  - OAuth2UserRestricted: []
+
+tags:
+  - name: Obligations
+    description: VAT return filing obligations
+  - name: Returns
+    description: VAT return submission
+  - name: Payments
+    description: VAT payments made to HMRC
+  - name: Liabilities
+    description: VAT financial liabilities
+
+paths:
+  /organisations/vat/{vrn}/obligations:
+    get:
+      operationId: getVatObligations
+      summary: Retrieve VAT obligations
+      description: >-
+        Retrieves VAT return filing obligations for the specified VAT Registration
+        Number (VRN). Returns periods for which returns must be filed, due dates,
+        and status (Open, Fulfilled) within the requested date range.
+      tags: [Obligations]
+      parameters:
+        - name: vrn
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{9}$'
+          description: VAT Registration Number (9 digits)
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Obligation period start date (YYYY-MM-DD), minimum 2017-01-01
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Obligation period end date (must be within 366 days of 'from')
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [O, F, A]
+            description: "O=Open, F=Fulfilled, A=All (default)"
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Bearer token (OAuth 2.0)
+        - name: Gov-Client-Connection-Method
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Fraud prevention header – client connection method
+        - name: Gov-Vendor-Version
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Fraud prevention header – vendor application version
+      responses:
+        '200':
+          description: VAT obligations returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObligationsResponse'
+        '400':
+          description: Invalid VRN or date range
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Client not subscribed to MTD VAT
+        '404':
+          description: No obligations found
+
+  /organisations/vat/{vrn}/returns:
+    post:
+      operationId: submitVatReturn
+      summary: Submit a VAT return
+      description: >-
+        Submits a VAT return for the specified VRN and period key. The return
+        must be for an open obligation. Duplicate submissions are rejected.
+        Finalisation is indicated by the 'finalised' field being true.
+      tags: [Returns]
+      parameters:
+        - name: vrn
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{9}$'
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Gov-Client-Connection-Method
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: Gov-Vendor-Version
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VatReturnRequest'
+      responses:
+        '201':
+          description: VAT return accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VatReturnConfirmation'
+        '400':
+          description: Invalid VAT return data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Duplicate submission or period is closed
+        '404':
+          description: VRN not found
+
+  /organisations/vat/{vrn}/returns/{periodKey}:
+    get:
+      operationId: getVatReturn
+      summary: View a submitted VAT return
+      description: Retrieves a previously submitted VAT return for the specified period key.
+      tags: [Returns]
+      parameters:
+        - name: vrn
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{9}$'
+        - name: periodKey
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{2}[A-Z]{2}$'
+          description: Period key from the obligation (e.g., "23AA")
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: VAT return retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VatReturn'
+        '404':
+          description: Return not found
+
+  /organisations/vat/{vrn}/payments:
+    get:
+      operationId: getVatPayments
+      summary: Retrieve VAT payments
+      description: Retrieves a list of VAT payments made by the business to HMRC within the specified date range.
+      tags: [Payments]
+      parameters:
+        - name: vrn
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{9}$'
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentsResponse'
+        '404':
+          description: No payments found
+
+  /organisations/vat/{vrn}/liabilities:
+    get:
+      operationId: getVatLiabilities
+      summary: Retrieve VAT liabilities
+      description: Retrieves VAT financial liabilities owed by the business to HMRC including amounts due, outstanding balances, and due dates.
+      tags: [Liabilities]
+      parameters:
+        - name: vrn
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^\d{9}$'
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Liabilities returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiabilitiesResponse'
+
+components:
+  securitySchemes:
+    OAuth2UserRestricted:
+      type: oauth2
+      description: HMRC OAuth 2.0 Authorization Code grant (user-restricted)
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.service.hmrc.gov.uk/oauth/authorize
+          tokenUrl: https://api.service.hmrc.gov.uk/oauth/token
+          scopes:
+            write:vat: Submit VAT returns
+            read:vat: Read VAT data
+
+  schemas:
+    ObligationsResponse:
+      type: object
+      properties:
+        obligations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Obligation'
+
+    Obligation:
+      type: object
+      properties:
+        periodKey:
+          type: string
+          description: Period identifier (e.g., "23AA")
+        start:
+          type: string
+          format: date
+          description: Obligation period start date
+        end:
+          type: string
+          format: date
+          description: Obligation period end date
+        due:
+          type: string
+          format: date
+          description: Return due date
+        status:
+          type: string
+          enum: [O, F]
+          description: "O=Open (not filed), F=Fulfilled (filed)"
+        received:
+          type: string
+          format: date
+          description: Date return was received (populated when Fulfilled)
+
+    VatReturnRequest:
+      type: object
+      required:
+        - periodKey
+        - vatDueSales
+        - vatDueAcquisitions
+        - totalVatDue
+        - vatReclaimedCurrPeriod
+        - netVatDue
+        - totalValueSalesExVAT
+        - totalValuePurchasesExVAT
+        - totalValueGoodsSuppliedExVAT
+        - totalAcquisitionsExVAT
+        - finalised
+      properties:
+        periodKey:
+          type: string
+          description: Period key matching an open obligation (e.g., "23AA")
+        vatDueSales:
+          type: number
+          description: "Box 1: VAT due on sales and other outputs"
+        vatDueAcquisitions:
+          type: number
+          description: "Box 2: VAT due on acquisitions from EC member states"
+        totalVatDue:
+          type: number
+          description: "Box 3: Total VAT due (Box 1 + Box 2)"
+        vatReclaimedCurrPeriod:
+          type: number
+          description: "Box 4: VAT reclaimed on purchases"
+        netVatDue:
+          type: number
+          description: "Box 5: Difference between Box 3 and Box 4"
+        totalValueSalesExVAT:
+          type: number
+          description: "Box 6: Total value of sales excluding VAT"
+        totalValuePurchasesExVAT:
+          type: number
+          description: "Box 7: Total value of purchases excluding VAT"
+        totalValueGoodsSuppliedExVAT:
+          type: number
+          description: "Box 8: Total value of goods supplied to EC member states (ex VAT)"
+        totalAcquisitionsExVAT:
+          type: number
+          description: "Box 9: Total acquisitions from EC member states (ex VAT)"
+        finalised:
+          type: boolean
+          description: Declaration that the submission is a final return for the period
+
+    VatReturn:
+      allOf:
+        - $ref: '#/components/schemas/VatReturnRequest'
+        - type: object
+          properties:
+            periodKey:
+              type: string
+
+    VatReturnConfirmation:
+      type: object
+      properties:
+        processingDate:
+          type: string
+          format: date-time
+          description: Date and time HMRC received the VAT return
+        formBundleNumber:
+          type: string
+          description: HMRC form bundle reference number (14 digits)
+        paymentIndicator:
+          type: string
+          enum: [BANK, DD, CHAPS]
+          description: Preferred payment method held on HMRC record
+        chargeRefNumber:
+          type: string
+          description: Charge reference number (if applicable)
+
+    PaymentsResponse:
+      type: object
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatPayment'
+
+    VatPayment:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Payment amount in GBP
+        received:
+          type: string
+          format: date
+          description: Date payment received by HMRC
+
+    LiabilitiesResponse:
+      type: object
+      properties:
+        liabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatLiability'
+
+    VatLiability:
+      type: object
+      properties:
+        taxPeriod:
+          type: object
+          properties:
+            from:
+              type: string
+              format: date
+            to:
+              type: string
+              format: date
+        type:
+          type: string
+          description: Liability type (e.g., "VAT Return Debit Charge")
+        originalAmount:
+          type: number
+          description: Original liability amount in GBP
+        outstandingAmount:
+          type: number
+          description: Outstanding balance in GBP
+        due:
+          type: string
+          format: date
+          description: Payment due date
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string

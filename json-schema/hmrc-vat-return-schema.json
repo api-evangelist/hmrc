@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/hmrc/json-schema/hmrc-vat-return-schema.json",
+  "title": "HMRC VAT Return",
+  "description": "JSON Schema for an HMRC Making Tax Digital VAT return submission. Contains the nine VAT return boxes as defined by HMRC for quarterly/monthly VAT accounting periods.",
+  "type": "object",
+  "properties": {
+    "periodKey": {
+      "type": "string",
+      "pattern": "^\\d{2}[A-Z]{2}$",
+      "description": "The period key identifying the VAT obligation (e.g., '23AA' for a specific quarter)"
+    },
+    "vatDueSales": {
+      "type": "number",
+      "description": "Box 1 – VAT due on sales and other outputs. Must be >= 0.",
+      "minimum": 0
+    },
+    "vatDueAcquisitions": {
+      "type": "number",
+      "description": "Box 2 – VAT due on acquisitions of goods and services from EC member states. Must be >= 0.",
+      "minimum": 0
+    },
+    "totalVatDue": {
+      "type": "number",
+      "description": "Box 3 – Total VAT due (sum of Box 1 and Box 2). Must equal vatDueSales + vatDueAcquisitions.",
+      "minimum": 0
+    },
+    "vatReclaimedCurrPeriod": {
+      "type": "number",
+      "description": "Box 4 – VAT reclaimed in the period on purchases and other inputs (including EC acquisitions). Must be >= 0.",
+      "minimum": 0
+    },
+    "netVatDue": {
+      "type": "number",
+      "description": "Box 5 – Net VAT to be paid to HMRC or reclaimed (absolute difference between Box 3 and Box 4). Must be >= 0.",
+      "minimum": 0
+    },
+    "totalValueSalesExVAT": {
+      "type": "number",
+      "description": "Box 6 – Total value of sales and all other outputs excluding VAT. Round to nearest pound.",
+      "minimum": 0
+    },
+    "totalValuePurchasesExVAT": {
+      "type": "number",
+      "description": "Box 7 – Total value of purchases and all other inputs excluding VAT. Round to nearest pound.",
+      "minimum": 0
+    },
+    "totalValueGoodsSuppliedExVAT": {
+      "type": "number",
+      "description": "Box 8 – Total value of all supplies of goods and related costs, excluding VAT, to EC member states.",
+      "minimum": 0
+    },
+    "totalAcquisitionsExVAT": {
+      "type": "number",
+      "description": "Box 9 – Total value of all acquisitions of goods and related costs, excluding VAT, from EC member states.",
+      "minimum": 0
+    },
+    "finalised": {
+      "type": "boolean",
+      "description": "Declaration that this is the final VAT return for the period. Must be true for accepted submissions.",
+      "const": true
+    }
+  },
+  "required": [
+    "periodKey",
+    "vatDueSales",
+    "vatDueAcquisitions",
+    "totalVatDue",
+    "vatReclaimedCurrPeriod",
+    "netVatDue",
+    "totalValueSalesExVAT",
+    "totalValuePurchasesExVAT",
+    "totalValueGoodsSuppliedExVAT",
+    "totalAcquisitionsExVAT",
+    "finalised"
+  ]
+}

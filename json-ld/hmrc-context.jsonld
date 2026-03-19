@@ -1,0 +1,103 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "gov": "https://www.gov.uk/api-schema/",
+    "tax": "https://www.w3.org/ns/oa#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dct": "http://purl.org/dc/terms/",
+
+    "VatReturn": {
+      "@id": "schema:TaxForm",
+      "@type": "@id"
+    },
+    "VatObligation": {
+      "@id": "schema:Service",
+      "@type": "@id"
+    },
+    "TaxLiability": {
+      "@id": "schema:Invoice",
+      "@type": "@id"
+    },
+
+    "periodKey": "schema:identifier",
+    "vatDueSales": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "vatDueAcquisitions": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "totalVatDue": {
+      "@id": "schema:totalPrice",
+      "@type": "xsd:decimal"
+    },
+    "vatReclaimedCurrPeriod": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "netVatDue": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "totalValueSalesExVAT": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "totalValuePurchasesExVAT": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "totalValueGoodsSuppliedExVAT": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "totalAcquisitionsExVAT": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "finalised": "schema:disambiguatingDescription",
+    "processingDate": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "formBundleNumber": "schema:identifier",
+
+    "start": {
+      "@id": "schema:startDate",
+      "@type": "xsd:date"
+    },
+    "end": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    "due": {
+      "@id": "schema:paymentDue",
+      "@type": "xsd:date"
+    },
+    "status": "schema:orderStatus",
+    "received": {
+      "@id": "schema:dateReceived",
+      "@type": "xsd:date"
+    },
+
+    "amount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "originalAmount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "outstandingAmount": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+
+    "vrn": {
+      "@id": "schema:taxID",
+      "@type": "xsd:string"
+    }
+  }
+}
