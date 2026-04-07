@@ -1,30 +1,24 @@
 aid: hmrc
-url: 
-  https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/apis.yml
 apis:
   - aid: hmrc:hmrc-vat-mtd-api
     name: HMRC VAT (Making Tax Digital) API
     tags:
       - Government
+      - Making Tax Digital
+      - REST
       - Tax
       - UK
       - VAT
-      - Making Tax Digital
-      - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
-    humanURL: 
-      https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0
+    image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+    humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0
     baseURL: https://api.service.hmrc.gov.uk
     properties:
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0
         type: Documentation
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0/oas/page
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0/oas/page
         type: Reference
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
         type: Authentication
       - url: openapi/hmrc-vat-mtd-openapi.yml
         type: OpenAPI
@@ -38,20 +32,18 @@ apis:
     name: HMRC Self Assessment API
     tags:
       - Government
-      - Tax
-      - UK
-      - Self Assessment
       - Income Tax
       - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+      - Self Assessment
+      - Tax
+      - UK
+    image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
     humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
     baseURL: https://api.service.hmrc.gov.uk
     properties:
       - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
         type: Documentation
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
         type: Authentication
     description: >-
       The HMRC Self Assessment APIs enable software to submit and manage self assessment
@@ -62,20 +54,18 @@ apis:
     name: HMRC PAYE (Pay As You Earn) API
     tags:
       - Government
-      - Tax
-      - UK
       - PAYE
       - Payroll
       - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+      - Tax
+      - UK
+    image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
     humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
     baseURL: https://api.service.hmrc.gov.uk
     properties:
       - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
         type: Documentation
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
         type: Authentication
     description: >-
       The HMRC PAYE APIs enable payroll software to submit employer payroll data,
@@ -85,22 +75,20 @@ apis:
   - aid: hmrc:hmrc-customs-declarations-api
     name: HMRC Customs Declarations API
     tags:
-      - Government
-      - Tax
-      - UK
       - Customs
       - Excise
+      - Government
       - REST
+      - Tax
+      - UK
       - XML
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
     humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
     baseURL: https://api.service.hmrc.gov.uk
     properties:
       - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
         type: Documentation
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
         type: Authentication
     description: >-
       The HMRC Customs Declarations APIs enable customs software to submit import
@@ -110,21 +98,19 @@ apis:
   - aid: hmrc:hmrc-corporation-tax-api
     name: HMRC Corporation Tax API
     tags:
+      - Business
+      - Corporation Tax
       - Government
+      - REST
       - Tax
       - UK
-      - Corporation Tax
-      - Business
-      - REST
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
     humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
     baseURL: https://api.service.hmrc.gov.uk
     properties:
       - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
         type: Documentation
-      - url: 
-          https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
+      - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
         type: Authentication
     description: >-
       The HMRC Corporation Tax APIs enable accounting software to submit corporation
@@ -140,8 +126,7 @@ common:
     PAYE, customs declarations, corporation tax, and construction industry scheme.
     APIs use OAuth 2.0 and support both REST and XML protocols with a sandbox testing
     environment.
-  image: 
-    https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
+  image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
   tags:
     - Government
     - Tax
@@ -153,11 +138,9 @@ common:
       type: Portal
     - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
       type: Documentation
-    - url: 
-        https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
+    - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
       type: Authentication
-    - url: 
-        https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub
+    - url: https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub
       type: Getting Started
     - url: https://www.gov.uk/api-documentation/docs/terms-of-use
       type: Terms of Service

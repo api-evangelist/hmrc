@@ -27,15 +27,15 @@ security:
   - OAuth2UserRestricted: []
 
 tags:
-  - name: Obligations
-    description: VAT return filing obligations
-  - name: Returns
-    description: VAT return submission
-  - name: Payments
-    description: VAT payments made to HMRC
   - name: Liabilities
     description: VAT financial liabilities
 
+  - name: Obligations
+    description: VAT return filing obligations
+  - name: Payments
+    description: VAT payments made to HMRC
+  - name: Returns
+    description: VAT return submission
 paths:
   /organisations/vat/{vrn}/obligations:
     get:
