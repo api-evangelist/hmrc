@@ -1,10 +1,22 @@
-# Unknown (hmrc)
+# HMRC UK Tax Authority (hmrc)
+HM Revenue and Customs (HMRC) provides over 115 APIs through the HMRC Developer Hub for UK tax compliance including Making Tax Digital for VAT and Income Tax, PAYE, customs declarations, corporation tax, and construction industry scheme. APIs use OAuth 2.0 and support both REST and XML protocols with a sandbox testing environment.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/apis.yml)
 
+## Scope
+
+- **Type:** Index 
+- **Position:** Consuming 
+- **Access:** 3rd-Party 
+
+## Tags:
+
+ - Government, Making Tax Digital, Regulatory, Tax, UK
+
 ## Timestamps
 
-- **Modified:** 2026-03-18 
+- **Created:** 2025 
+- **Modified:** 2026-04-28 
 
 ## APIs
 
@@ -13,10 +25,11 @@ The HMRC VAT (Making Tax Digital) API enables software to submit VAT returns, re
 
 **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0)
 
+**Base URL:** https://api.service.hmrc.gov.uk
 
 #### Tags:
 
- - Government, Tax, UK, VAT, Making Tax Digital, REST
+ - Government, Making Tax Digital, REST, Tax, UK, VAT
 
 #### Properties
 
@@ -30,10 +43,11 @@ The HMRC Self Assessment APIs enable software to submit and manage self assessme
 
 **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
 
+**Base URL:** https://api.service.hmrc.gov.uk
 
 #### Tags:
 
- - Government, Tax, UK, Self Assessment, Income Tax, REST
+ - Government, Income Tax, REST, Self Assessment, Tax, UK
 
 #### Properties
 
@@ -45,10 +59,11 @@ The HMRC PAYE APIs enable payroll software to submit employer payroll data, retr
 
 **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
 
+**Base URL:** https://api.service.hmrc.gov.uk
 
 #### Tags:
 
- - Government, Tax, UK, PAYE, Payroll, REST
+ - Government, PAYE, Payroll, REST, Tax, UK
 
 #### Properties
 
@@ -60,10 +75,11 @@ The HMRC Customs Declarations APIs enable customs software to submit import and 
 
 **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
 
+**Base URL:** https://api.service.hmrc.gov.uk
 
 #### Tags:
 
- - Government, Tax, UK, Customs, Excise, REST, XML
+ - Customs, Excise, Government, REST, Tax, UK, XML
 
 #### Properties
 
@@ -75,10 +91,11 @@ The HMRC Corporation Tax APIs enable accounting software to submit corporation t
 
 **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
 
+**Base URL:** https://api.service.hmrc.gov.uk
 
 #### Tags:
 
- - Government, Tax, UK, Corporation Tax, Business, REST
+ - Business, Corporation Tax, Government, REST, Tax, UK
 
 #### Properties
 
@@ -86,3 +103,21 @@ The HMRC Corporation Tax APIs enable accounting software to submit corporation t
 - [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
 
 ## Common Properties
+
+- [Portal](https://developer.service.hmrc.gov.uk/)
+- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
+- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
+- [Getting Started](https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub)
+- [Terms of Service](https://www.gov.uk/api-documentation/docs/terms-of-use)
+- [Status](https://api-platform-status.production.tax.service.gov.uk/)
+- [Support](https://developer.service.hmrc.gov.uk/)
+- [Website](https://www.gov.uk/government/organisations/hm-revenue-customs)
+- [OpenAPI](openapi/hmrc-vat-mtd-openapi.yml)
+- [JSONSchema](json-schema/hmrc-vat-return-schema.json)
+- [JSONLDContext](json-ld/hmrc-context.jsonld)
+
+## Maintainers
+
+**FN:** Kin Lane
+
+**Email:** kin@apievangelist.com
