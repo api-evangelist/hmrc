@@ -8,10 +8,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: HMRC UK Tax Authority
 providerId: hmrc
-publisherName: HMRC UK Tax Authority
-serviceCategory: API
+publisherName: HM Revenue & Customs
+serviceCategory: Government / Tax
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Government
   - Making Tax Digital
@@ -21,20 +22,51 @@ tags:
   - FinOps
   - Cost Management
   - FOCUS
-description: FinOps framework definition for the HMRC UK Tax Authority API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+description: 'FOCUS-aligned FinOps definition for HMRC. The HMRC Developer Hub APIs themselves are zero-cost
+  to consumers; FinOps for HMRC therefore tracks the indirect cost of integration (rate-limit-driven design,
+  software-recognition compliance, fraud-prevention overhead) rather than direct billing. ChargeCategory
+  for HMRC API usage is effectively zero / not-billed.'
+sources:
+  - https://developer.service.hmrc.gov.uk/api-documentation
+  - https://developer.service.hmrc.gov.uk/api-documentation/docs/reference-guide
+  - https://developer.service.hmrc.gov.uk/api-documentation/docs/terms-of-use
+billingModel:
+  pricingCategory: Free / No Charge
+  billingFrequency: Not Applicable
+  billingCurrency: GBP
+  chargeCategories:
+    - Adjustment
+  chargeFrequency: Not Applicable
+  notes: HMRC does not invoice for API access. Internal cost is consumer integration effort + dependent SaaS
+    fees from the consuming software vendor.
+focusColumns:
+  ServiceName: HMRC Developer Hub
+  ServiceCategory: Government / Tax
+  ProviderName: HMRC UK Tax Authority
+  PublisherName: HM Revenue & Customs
+  InvoiceIssuerName: 'Not applicable (free service)'
+  PricingCategory: Free
+  PricingUnit: request
+  BillingCurrency: GBP
+  ChargeCategory: Adjustment
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Use the HMRC Developer Hub application dashboard to monitor request volume and 429 rates
+      per registered application. Capture Request-Id correlation IDs and Gov-Client-* fraud-prevention
+      header values in your observability pipeline.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Allocate engineering and integration cost by HMRC API family (VAT MTD, Self Assessment,
+      PAYE, Customs Declarations, Corporation Tax). Tag traffic by tax-period and by the end-customer of
+      the consuming software so internal recharge to the relevant product line is possible.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: HMRC penalises batching; design submission flows around real-time user actions to stay
+      under the 3 RPS per-application throttle. Cache reference data (rates, codes) where HMRC permits to
+      reduce gateway pressure. If sustained throughput is required, lodge a rate-limit-uplift request with
+      HMRC SDS rather than spawning multiple applications.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Assign a named owner per HMRC API integration who is responsible for software-recognition
+      status, fraud-prevention header correctness, Terms-of-Use compliance, and incident response when HMRC
+      issues 503 / SCHEDULED_MAINTENANCE notices.
 domains:
   - name: Understand Usage and Cost
     capabilities:
@@ -51,66 +83,48 @@ domains:
       - Unit Economics
   - name: Optimize Usage and Cost
     capabilities:
-      - Architecting for Cloud
       - Rate Optimization
       - Workload Optimization
-      - Cloud Sustainability
       - Licensing and SaaS
   - name: Manage the FinOps Practice
     capabilities:
       - FinOps Practice Operations
       - FinOps Education and Enablement
-      - Invoicing and Chargeback
       - Onboarding Workloads
       - Intersecting Disciplines
-billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
-  chargeCategories:
-    - Usage
-    - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
-focusColumns:
-  ServiceName: HMRC UK Tax Authority
-  ServiceCategory: Developer Tools / API
-  ProviderName: HMRC UK Tax Authority
-  PublisherName: HMRC UK Tax Authority
-  InvoiceIssuerName: HMRC UK Tax Authority
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
   - name: api_requests
-    description: Count of billable API requests
+    description: Count of requests sent to HMRC APIs per registered application
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - environment
+      - application_id
+      - tax_period
+      - end_customer
+  - name: throttled_responses
+    description: Count of HTTP 429 / MESSAGE_THROTTLED_OUT responses, used as a leading indicator for
+      design changes or rate-limit uplift requests
+    unit: response
     aggregation: sum
     dimensions:
       - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - application_id
+  - name: maintenance_events
+    description: Count of 503 SCHEDULED_MAINTENANCE / SERVER_ERROR responses
+    unit: event
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
+  - name: recognised_software_status
+    description: Indicator that the consuming product holds HMRC Recognised Software status for a given
+      tax regime
+    unit: status
+    aggregation: max
+    dimensions:
+      - api
+      - application_id
 apis:
   - name: HMRC VAT (Making Tax Digital) API
     baseURL: https://api.service.hmrc.gov.uk
@@ -122,7 +136,7 @@ apis:
       - UK
       - VAT
     serviceName: HMRC VAT (Making Tax Digital) API
-    serviceCategory: API
+    serviceCategory: Government / Tax
   - name: HMRC Self Assessment API
     baseURL: https://api.service.hmrc.gov.uk
     tags:
@@ -133,7 +147,7 @@ apis:
       - Tax
       - UK
     serviceName: HMRC Self Assessment API
-    serviceCategory: API
+    serviceCategory: Government / Tax
   - name: HMRC PAYE (Pay As You Earn) API
     baseURL: https://api.service.hmrc.gov.uk
     tags:
@@ -144,7 +158,7 @@ apis:
       - Tax
       - UK
     serviceName: HMRC PAYE (Pay As You Earn) API
-    serviceCategory: API
+    serviceCategory: Government / Tax
   - name: HMRC Customs Declarations API
     baseURL: https://api.service.hmrc.gov.uk
     tags:
@@ -156,7 +170,7 @@ apis:
       - UK
       - XML
     serviceName: HMRC Customs Declarations API
-    serviceCategory: API
+    serviceCategory: Government / Tax
   - name: HMRC Corporation Tax API
     baseURL: https://api.service.hmrc.gov.uk
     tags:
@@ -167,13 +181,13 @@ apis:
       - Tax
       - UK
     serviceName: HMRC Corporation Tax API
-    serviceCategory: API
+    serviceCategory: Government / Tax
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
+  - name: Throttle Pressure
+    metric: throttled_responses / api_requests
+    target: '< 0.1%'
+  - name: Cost per HMRC Submission (consumer side)
+    metric: consumer_engineering_and_saas_cost / submissions
     target: TBD
 maintainers:
   - FN: Kin Lane

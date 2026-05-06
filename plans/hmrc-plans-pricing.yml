@@ -4,153 +4,124 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: HMRC UK Tax Authority
 providerId: hmrc
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Government
   - Making Tax Digital
   - Regulatory
   - Tax
   - UK
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: HMRC's Developer Hub APIs are free of charge for all software vendors and businesses. Access is
+  gated by HMRC application registration, OAuth user authorization, and software-recognition for production
+  endpoints; there are no paid tiers. The platform distinguishes a sandbox environment from production, and
+  provides a single rate-limit ceiling that can be raised by request via HMRC support. This artifact models
+  HMRC's offering as a single free Developer plan plus a partner-recognition track for software vendors.
+sources:
+  - https://developer.service.hmrc.gov.uk/api-documentation
+  - https://developer.service.hmrc.gov.uk/api-documentation/docs/reference-guide
+  - https://developer.service.hmrc.gov.uk/api-documentation/docs/terms-of-use
 plans:
-  - id: hmrc-free
-    name: Free
+  - id: hmrc-developer
+    name: Developer (Sandbox + Production)
     type: freemium
-    description: Free entry tier for the HMRC UK Tax Authority API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free access to all HMRC Developer Hub APIs, including sandbox and production. Available to
+      registered software developers; production traffic is subject to a 3 requests/second per-application
+      throttle and to HMRC's Terms of Use, fraud-prevention header requirements, and software recognition
+      where applicable.
     entries:
       - label: API Requests
-        description: Monthly API request quota across all included endpoints
+        description: HMRC does not publish a per-month request quota; usage is governed by the 3 RPS
+          per-application throttle plus fraud-prevention header requirements
         name: api_requests
         type: quota
         metric: requests
-        limit: 1000
+        limit: -1
         timeFrame: month
-        geo: global
+        geo: UK
+        domains:
+          - https://api.service.hmrc.gov.uk
+          - https://test-api.service.hmrc.gov.uk
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Per-Application Rate Limit
+        description: Default per-application steady-state limit on production
+        name: rate_limit
+        type: rate
+        metric: requests_per_second
+        limit: 3
+        timeFrame: second
+        geo: UK
         domains:
           - https://api.service.hmrc.gov.uk
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
+      - label: Sandbox Access
+        description: Free sandbox environment for testing
+        name: sandbox
+        type: quota
+        metric: requests
+        limit: -1
+        timeFrame: month
+        geo: UK
         domains:
-          - https://api.service.hmrc.gov.uk
+          - https://test-api.service.hmrc.gov.uk
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
+      - name: Free of Charge
+      - name: OAuth 2.0 User Authorization
+      - name: Application Registration Required
+      - name: Sandbox Environment
       - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
+      - name: Fraud Prevention Headers Required
       - name: HMRC VAT (Making Tax Digital) API
       - name: HMRC Self Assessment API
       - name: HMRC PAYE (Pay As You Earn) API
       - name: HMRC Customs Declarations API
       - name: HMRC Corporation Tax API
-  - id: hmrc-pro
-    name: Professional
-    type: paid
-    description: Production tier for HMRC UK Tax Authority. Provides higher quotas, priority support,
-      and access to the broader API portfolio. Pricing placeholder; align with the provider's pricing
-      page.
+  - id: hmrc-recognised-software
+    name: Recognised Software Vendor
+    type: enterprise
+    description: Free access tier for software vendors whose products have been formally recognised by HMRC
+      for Making Tax Digital, PAYE, Self Assessment, etc. No additional fee; status enables product listing
+      on HMRC's recognised-software pages and access to vendor-support channels.
     entries:
       - label: API Requests
-        description: Monthly API request quota
+        description: Same per-application throttle as the Developer plan; raise requests can be lodged with
+          HMRC SDS Team
         name: api_requests
         type: quota
         metric: requests
-        limit: 100000
+        limit: -1
         timeFrame: month
-        geo: global
-        domains:
-          - https://api.service.hmrc.gov.uk
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
+        geo: UK
         domains:
           - https://api.service.hmrc.gov.uk
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.service.hmrc.gov.uk
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: HMRC VAT (Making Tax Digital) API
-      - name: HMRC Self Assessment API
-      - name: HMRC PAYE (Pay As You Earn) API
-      - name: HMRC Customs Declarations API
-      - name: HMRC Corporation Tax API
-  - id: hmrc-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for HMRC UK Tax Authority. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.service.hmrc.gov.uk
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
+      - label: Default Rate Limit
+        description: Per-application throttle, raisable by support request
         name: rate_limit
         type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
+        metric: requests_per_second
+        limit: 3
+        timeFrame: second
+        geo: UK
         domains:
           - https://api.service.hmrc.gov.uk
         unit: 1
-        price: custom
+        price: '0.00'
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
+      - name: Free of Charge
+      - name: HMRC Recognised Software Listing
+      - name: SDS Team Support
+      - name: Eligible for Rate-Limit Uplift
       - name: HMRC VAT (Making Tax Digital) API
       - name: HMRC Self Assessment API
       - name: HMRC PAYE (Pay As You Earn) API
