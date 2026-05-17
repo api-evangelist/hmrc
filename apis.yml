@@ -143,11 +143,11 @@ common:
     url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   - type: Authentication
     url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.gov.uk/api-documentation/docs/terms-of-use
-  - type: Status
+  - type: StatusPage
     url: https://api-platform-status.production.tax.service.gov.uk/
   - type: Support
     url: https://developer.service.hmrc.gov.uk/
