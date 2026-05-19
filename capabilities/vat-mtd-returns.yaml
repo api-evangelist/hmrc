@@ -1,0 +1,158 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: HMRC VAT (Making Tax Digital) API — Returns
+  description: 'HMRC VAT (Making Tax Digital) API — Returns. 2 operations. Lead operation: Submit a VAT return. Self-contained
+    Naftiko capability covering one Hmrc business surface.'
+  tags:
+  - Hmrc
+  - Returns
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HMRC_API_KEY: HMRC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vat-mtd-returns
+    baseUri: https://api.service.hmrc.gov.uk
+    description: HMRC VAT (Making Tax Digital) API — Returns business capability. Self-contained, no shared references.
+    resources:
+    - name: organisations-vat-vrn-returns
+      path: /organisations/vat/{vrn}/returns
+      operations:
+      - name: submitvatreturn
+        method: POST
+        description: Submit a VAT return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vrn
+          in: path
+          type: string
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+        - name: Gov-Client-Connection-Method
+          in: header
+          type: string
+          required: true
+        - name: Gov-Vendor-Version
+          in: header
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organisations-vat-vrn-returns-periodKey
+      path: /organisations/vat/{vrn}/returns/{periodKey}
+      operations:
+      - name: getvatreturn
+        method: GET
+        description: View a submitted VAT return
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: vrn
+          in: path
+          type: string
+          required: true
+        - name: periodKey
+          in: path
+          type: string
+          description: Period key from the obligation (e.g., "23AA")
+          required: true
+        - name: Authorization
+          in: header
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.HMRC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: vat-mtd-returns-rest
+    port: 8080
+    description: REST adapter for HMRC VAT (Making Tax Digital) API — Returns. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/organisations/vat/{vrn}/returns
+      name: organisations-vat-vrn-returns
+      description: REST surface for organisations-vat-vrn-returns.
+      operations:
+      - method: POST
+        name: submitvatreturn
+        description: Submit a VAT return
+        call: vat-mtd-returns.submitvatreturn
+        with:
+          vrn: rest.vrn
+          Authorization: rest.Authorization
+          Gov-Client-Connection-Method: rest.Gov-Client-Connection-Method
+          Gov-Vendor-Version: rest.Gov-Vendor-Version
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organisations/vat/{vrn}/returns/{periodkey}
+      name: organisations-vat-vrn-returns-periodkey
+      description: REST surface for organisations-vat-vrn-returns-periodKey.
+      operations:
+      - method: GET
+        name: getvatreturn
+        description: View a submitted VAT return
+        call: vat-mtd-returns.getvatreturn
+        with:
+          vrn: rest.vrn
+          periodKey: rest.periodKey
+          Authorization: rest.Authorization
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vat-mtd-returns-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for HMRC VAT (Making Tax Digital) API — Returns. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: submit-vat-return
+      description: Submit a VAT return
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: vat-mtd-returns.submitvatreturn
+      with:
+        vrn: tools.vrn
+        Authorization: tools.Authorization
+        Gov-Client-Connection-Method: tools.Gov-Client-Connection-Method
+        Gov-Vendor-Version: tools.Gov-Vendor-Version
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: view-submitted-vat-return
+      description: View a submitted VAT return
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vat-mtd-returns.getvatreturn
+      with:
+        vrn: tools.vrn
+        periodKey: tools.periodKey
+        Authorization: tools.Authorization
+      outputParameters:
+      - type: object
+        mapping: $.
