@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VatReturnConfirmation",
+  "title": "VatReturnConfirmation",
+  "type": "object",
+  "properties": {
+    "processingDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time HMRC received the VAT return"
+    },
+    "formBundleNumber": {
+      "type": "string",
+      "description": "HMRC form bundle reference number (14 digits)"
+    },
+    "paymentIndicator": {
+      "type": "string",
+      "enum": [
+        "BANK",
+        "DD",
+        "CHAPS"
+      ],
+      "description": "Preferred payment method held on HMRC record"
+    },
+    "chargeRefNumber": {
+      "type": "string",
+      "description": "Charge reference number (if applicable)"
+    }
+  }
+}

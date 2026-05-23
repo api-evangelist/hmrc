@@ -1,0 +1,129 @@
+{
+  "provider": "HMRC UK Tax Authority",
+  "providerId": "hmrc",
+  "kind": "json-structure",
+  "description": "Structural overview of the HMRC UK Tax Authority API surface; extracted from openapi/.",
+  "schemaCount": 10,
+  "operationCount": 5,
+  "schemas": [
+    {
+      "name": "ObligationsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Obligation",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "VatReturnRequest",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "periodKey",
+        "vatDueSales",
+        "vatDueAcquisitions",
+        "totalVatDue",
+        "vatReclaimedCurrPeriod",
+        "netVatDue",
+        "totalValueSalesExVAT",
+        "totalValuePurchasesExVAT",
+        "totalValueGoodsSuppliedExVAT",
+        "totalAcquisitionsExVAT",
+        "finalised"
+      ]
+    },
+    {
+      "name": "VatReturn",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "VatReturnConfirmation",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "PaymentsResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "VatPayment",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LiabilitiesResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "VatLiability",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/organisations/vat/{vrn}/obligations",
+      "operationId": "getVatObligations",
+      "summary": "Retrieve VAT obligations",
+      "tags": [
+        "Obligations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/organisations/vat/{vrn}/returns",
+      "operationId": "submitVatReturn",
+      "summary": "Submit a VAT return",
+      "tags": [
+        "Returns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organisations/vat/{vrn}/returns/{periodKey}",
+      "operationId": "getVatReturn",
+      "summary": "View a submitted VAT return",
+      "tags": [
+        "Returns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organisations/vat/{vrn}/payments",
+      "operationId": "getVatPayments",
+      "summary": "Retrieve VAT payments",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/organisations/vat/{vrn}/liabilities",
+      "operationId": "getVatLiabilities",
+      "summary": "Retrieve VAT liabilities",
+      "tags": [
+        "Liabilities"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Obligation",
+  "title": "Obligation",
+  "type": "object",
+  "properties": {
+    "periodKey": {
+      "type": "string",
+      "description": "Period identifier (e.g., \"23AA\")"
+    },
+    "start": {
+      "type": "string",
+      "format": "date",
+      "description": "Obligation period start date"
+    },
+    "end": {
+      "type": "string",
+      "format": "date",
+      "description": "Obligation period end date"
+    },
+    "due": {
+      "type": "string",
+      "format": "date",
+      "description": "Return due date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "O",
+        "F"
+      ],
+      "description": "O=Open (not filed), F=Fulfilled (filed)"
+    },
+    "received": {
+      "type": "string",
+      "format": "date",
+      "description": "Date return was received (populated when Fulfilled)"
+    }
+  }
+}

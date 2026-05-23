@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VatReturnRequest",
+  "title": "VatReturnRequest",
+  "type": "object",
+  "required": [
+    "periodKey",
+    "vatDueSales",
+    "vatDueAcquisitions",
+    "totalVatDue",
+    "vatReclaimedCurrPeriod",
+    "netVatDue",
+    "totalValueSalesExVAT",
+    "totalValuePurchasesExVAT",
+    "totalValueGoodsSuppliedExVAT",
+    "totalAcquisitionsExVAT",
+    "finalised"
+  ],
+  "properties": {
+    "periodKey": {
+      "type": "string",
+      "description": "Period key matching an open obligation (e.g., \"23AA\")"
+    },
+    "vatDueSales": {
+      "type": "number",
+      "description": "Box 1: VAT due on sales and other outputs"
+    },
+    "vatDueAcquisitions": {
+      "type": "number",
+      "description": "Box 2: VAT due on acquisitions from EC member states"
+    },
+    "totalVatDue": {
+      "type": "number",
+      "description": "Box 3: Total VAT due (Box 1 + Box 2)"
+    },
+    "vatReclaimedCurrPeriod": {
+      "type": "number",
+      "description": "Box 4: VAT reclaimed on purchases"
+    },
+    "netVatDue": {
+      "type": "number",
+      "description": "Box 5: Difference between Box 3 and Box 4"
+    },
+    "totalValueSalesExVAT": {
+      "type": "number",
+      "description": "Box 6: Total value of sales excluding VAT"
+    },
+    "totalValuePurchasesExVAT": {
+      "type": "number",
+      "description": "Box 7: Total value of purchases excluding VAT"
+    },
+    "totalValueGoodsSuppliedExVAT": {
+      "type": "number",
+      "description": "Box 8: Total value of goods supplied to EC member states (ex VAT)"
+    },
+    "totalAcquisitionsExVAT": {
+      "type": "number",
+      "description": "Box 9: Total acquisitions from EC member states (ex VAT)"
+    },
+    "finalised": {
+      "type": "boolean",
+      "description": "Declaration that the submission is a final return for the period"
+    }
+  }
+}

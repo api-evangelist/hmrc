@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VatLiability",
+  "title": "VatLiability",
+  "type": "object",
+  "properties": {
+    "taxPeriod": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date"
+        },
+        "to": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "Liability type (e.g., \"VAT Return Debit Charge\")"
+    },
+    "originalAmount": {
+      "type": "number",
+      "description": "Original liability amount in GBP"
+    },
+    "outstandingAmount": {
+      "type": "number",
+      "description": "Outstanding balance in GBP"
+    },
+    "due": {
+      "type": "string",
+      "format": "date",
+      "description": "Payment due date"
+    }
+  }
+}

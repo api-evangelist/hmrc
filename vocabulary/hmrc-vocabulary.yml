@@ -1,0 +1,13 @@
+name: HMRC UK Tax Authority Domain Vocabulary
+provider: HMRC UK Tax Authority
+providerId: hmrc
+description: Tag-derived vocabulary for the HMRC UK Tax Authority API surface; sourced from openapi/ tags.
+terms:
+- term: Liabilities
+  description: VAT financial liabilities
+- term: Obligations
+  description: VAT return filing obligations
+- term: Payments
+  description: VAT payments made to HMRC
+- term: Returns
+  description: VAT return submission

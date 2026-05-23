@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VatPayment",
+  "title": "VatPayment",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Payment amount in GBP"
+    },
+    "received": {
+      "type": "string",
+      "format": "date",
+      "description": "Date payment received by HMRC"
+    }
+  }
+}

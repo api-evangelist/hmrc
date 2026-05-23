@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VatReturn",
+  "title": "VatReturn",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/VatReturnRequest"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "periodKey": {
+          "type": "string"
+        }
+      }
+    }
+  ]
+}
