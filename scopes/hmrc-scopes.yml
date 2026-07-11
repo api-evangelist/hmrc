@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/hmrc-vat-mtd-openapi.yml
+schemes:
+- name: OAuth2UserRestricted
+  source: openapi/hmrc-vat-mtd-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.service.hmrc.gov.uk/oauth/authorize
+    tokenUrl: https://api.service.hmrc.gov.uk/oauth/token
+  description: HMRC OAuth 2.0 Authorization Code grant (user-restricted)
+scopes:
+- scope: read:vat
+  description: Read VAT data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/hmrc-vat-mtd-openapi.yml
+- scope: write:vat
+  description: Submit VAT returns
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/hmrc-vat-mtd-openapi.yml

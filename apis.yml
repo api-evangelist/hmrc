@@ -124,6 +124,8 @@ apis:
       - type: Authentication
         url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
 common:
+  - type: OAuthScopes
+    url: scopes/hmrc-scopes.yml
   - type: GitHubOrganization
     url: https://github.com/hmrc
   - type: LinkedIn
