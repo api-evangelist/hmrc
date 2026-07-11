@@ -124,6 +124,12 @@ apis:
       - type: Authentication
         url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
 common:
+  - type: VulnerabilityDisclosure
+    url: security/hmrc-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/hmrc-domain-security.yml
+  - type: Authentication
+    url: authentication/hmrc-authentication.yml
   - type: OAuthScopes
     url: scopes/hmrc-scopes.yml
   - type: GitHubOrganization
