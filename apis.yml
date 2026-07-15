@@ -124,6 +124,8 @@ apis:
       - type: Authentication
         url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
 common:
+  - type: AgenticAccess
+    url: agentic-access/hmrc-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/hmrc-vulnerability-disclosure.yml
   - type: DomainSecurity
