@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: HMRC VAT (Making Tax Digital) Liabilities Returns API
+  description: The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.
+  version: 1.0.0
+  contact:
+    name: HMRC Developer Hub
+    url: https://developer.service.hmrc.gov.uk/
+  license:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+servers:
+- url: https://api.service.hmrc.gov.uk
+  description: HMRC Production API
+- url: https://test-api.service.hmrc.gov.uk
+  description: HMRC Sandbox (test) environment
+security:
+- OAuth2UserRestricted: []
+tags:
+- name: Returns
+  description: VAT return submission
+paths:
+  /organisations/vat/{vrn}/returns:
+    post:
+      operationId: submitVatReturn
+      summary: Submit a VAT return
+      description: Submits a VAT return for the specified VRN and period key. The return must be for an open obligation. Duplicate submissions are rejected. Finalisation is indicated by the 'finalised' field being true.
+      tags:
+      - Returns
+      parameters:
+      - name: vrn
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^\d{9}$
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Gov-Client-Connection-Method
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: Gov-Vendor-Version
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VatReturnRequest'
+      responses:
+        '201':
+          description: VAT return accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VatReturnConfirmation'
+        '400':
+          description: Invalid VAT return data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Duplicate submission or period is closed
+        '404':
+          description: VRN not found
+  /organisations/vat/{vrn}/returns/{periodKey}:
+    get:
+      operationId: getVatReturn
+      summary: View a submitted VAT return
+      description: Retrieves a previously submitted VAT return for the specified period key.
+      tags:
+      - Returns
+      parameters:
+      - name: vrn
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^\d{9}$
+      - name: periodKey
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^\d{2}[A-Z]{2}$
+        description: Period key from the obligation (e.g., "23AA")
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: VAT return retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VatReturn'
+        '404':
+          description: Return not found
+components:
+  schemas:
+    VatReturnRequest:
+      type: object
+      required:
+      - periodKey
+      - vatDueSales
+      - vatDueAcquisitions
+      - totalVatDue
+      - vatReclaimedCurrPeriod
+      - netVatDue
+      - totalValueSalesExVAT
+      - totalValuePurchasesExVAT
+      - totalValueGoodsSuppliedExVAT
+      - totalAcquisitionsExVAT
+      - finalised
+      properties:
+        periodKey:
+          type: string
+          description: Period key matching an open obligation (e.g., "23AA")
+        vatDueSales:
+          type: number
+          description: 'Box 1: VAT due on sales and other outputs'
+        vatDueAcquisitions:
+          type: number
+          description: 'Box 2: VAT due on acquisitions from EC member states'
+        totalVatDue:
+          type: number
+          description: 'Box 3: Total VAT due (Box 1 + Box 2)'
+        vatReclaimedCurrPeriod:
+          type: number
+          description: 'Box 4: VAT reclaimed on purchases'
+        netVatDue:
+          type: number
+          description: 'Box 5: Difference between Box 3 and Box 4'
+        totalValueSalesExVAT:
+          type: number
+          description: 'Box 6: Total value of sales excluding VAT'
+        totalValuePurchasesExVAT:
+          type: number
+          description: 'Box 7: Total value of purchases excluding VAT'
+        totalValueGoodsSuppliedExVAT:
+          type: number
+          description: 'Box 8: Total value of goods supplied to EC member states (ex VAT)'
+        totalAcquisitionsExVAT:
+          type: number
+          description: 'Box 9: Total acquisitions from EC member states (ex VAT)'
+        finalised:
+          type: boolean
+          description: Declaration that the submission is a final return for the period
+    VatReturnConfirmation:
+      type: object
+      properties:
+        processingDate:
+          type: string
+          format: date-time
+          description: Date and time HMRC received the VAT return
+        formBundleNumber:
+          type: string
+          description: HMRC form bundle reference number (14 digits)
+        paymentIndicator:
+          type: string
+          enum:
+          - BANK
+          - DD
+          - CHAPS
+          description: Preferred payment method held on HMRC record
+        chargeRefNumber:
+          type: string
+          description: Charge reference number (if applicable)
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
+    VatReturn:
+      allOf:
+      - $ref: '#/components/schemas/VatReturnRequest'
+      - type: object
+        properties:
+          periodKey:
+            type: string
+  securitySchemes:
+    OAuth2UserRestricted:
+      type: oauth2
+      description: HMRC OAuth 2.0 Authorization Code grant (user-restricted)
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.service.hmrc.gov.uk/oauth/authorize
+          tokenUrl: https://api.service.hmrc.gov.uk/oauth/token
+          scopes:
+            write:vat: Submit VAT returns
+            read:vat: Read VAT data
+externalDocs:
+  description: HMRC VAT API Documentation
+  url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0

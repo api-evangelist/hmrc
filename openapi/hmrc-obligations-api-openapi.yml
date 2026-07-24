@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: HMRC VAT (Making Tax Digital) Liabilities Obligations API
+  description: The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.
+  version: 1.0.0
+  contact:
+    name: HMRC Developer Hub
+    url: https://developer.service.hmrc.gov.uk/
+  license:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+servers:
+- url: https://api.service.hmrc.gov.uk
+  description: HMRC Production API
+- url: https://test-api.service.hmrc.gov.uk
+  description: HMRC Sandbox (test) environment
+security:
+- OAuth2UserRestricted: []
+tags:
+- name: Obligations
+  description: VAT return filing obligations
+paths:
+  /organisations/vat/{vrn}/obligations:
+    get:
+      operationId: getVatObligations
+      summary: Retrieve VAT obligations
+      description: Retrieves VAT return filing obligations for the specified VAT Registration Number (VRN). Returns periods for which returns must be filed, due dates, and status (Open, Fulfilled) within the requested date range.
+      tags:
+      - Obligations
+      parameters:
+      - name: vrn
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^\d{9}$
+        description: VAT Registration Number (9 digits)
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Obligation period start date (YYYY-MM-DD), minimum 2017-01-01
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Obligation period end date (must be within 366 days of 'from')
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - O
+          - F
+          - A
+          description: O=Open, F=Fulfilled, A=All (default)
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+        description: Bearer token (OAuth 2.0)
+      - name: Gov-Client-Connection-Method
+        in: header
+        required: true
+        schema:
+          type: string
+        description: Fraud prevention header – client connection method
+      - name: Gov-Vendor-Version
+        in: header
+        required: true
+        schema:
+          type: string
+        description: Fraud prevention header – vendor application version
+      responses:
+        '200':
+          description: VAT obligations returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObligationsResponse'
+        '400':
+          description: Invalid VRN or date range
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Client not subscribed to MTD VAT
+        '404':
+          description: No obligations found
+components:
+  schemas:
+    ObligationsResponse:
+      type: object
+      properties:
+        obligations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Obligation'
+    Obligation:
+      type: object
+      properties:
+        periodKey:
+          type: string
+          description: Period identifier (e.g., "23AA")
+        start:
+          type: string
+          format: date
+          description: Obligation period start date
+        end:
+          type: string
+          format: date
+          description: Obligation period end date
+        due:
+          type: string
+          format: date
+          description: Return due date
+        status:
+          type: string
+          enum:
+          - O
+          - F
+          description: O=Open (not filed), F=Fulfilled (filed)
+        received:
+          type: string
+          format: date
+          description: Date return was received (populated when Fulfilled)
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
+  securitySchemes:
+    OAuth2UserRestricted:
+      type: oauth2
+      description: HMRC OAuth 2.0 Authorization Code grant (user-restricted)
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.service.hmrc.gov.uk/oauth/authorize
+          tokenUrl: https://api.service.hmrc.gov.uk/oauth/token
+          scopes:
+            write:vat: Submit VAT returns
+            read:vat: Read VAT data
+externalDocs:
+  description: HMRC VAT API Documentation
+  url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0

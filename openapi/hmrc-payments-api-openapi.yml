@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: HMRC VAT (Making Tax Digital) Liabilities Payments API
+  description: The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.
+  version: 1.0.0
+  contact:
+    name: HMRC Developer Hub
+    url: https://developer.service.hmrc.gov.uk/
+  license:
+    name: Open Government Licence v3.0
+    url: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+servers:
+- url: https://api.service.hmrc.gov.uk
+  description: HMRC Production API
+- url: https://test-api.service.hmrc.gov.uk
+  description: HMRC Sandbox (test) environment
+security:
+- OAuth2UserRestricted: []
+tags:
+- name: Payments
+  description: VAT payments made to HMRC
+paths:
+  /organisations/vat/{vrn}/payments:
+    get:
+      operationId: getVatPayments
+      summary: Retrieve VAT payments
+      description: Retrieves a list of VAT payments made by the business to HMRC within the specified date range.
+      tags:
+      - Payments
+      parameters:
+      - name: vrn
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^\d{9}$
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentsResponse'
+        '404':
+          description: No payments found
+components:
+  schemas:
+    PaymentsResponse:
+      type: object
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatPayment'
+    VatPayment:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Payment amount in GBP
+        received:
+          type: string
+          format: date
+          description: Date payment received by HMRC
+  securitySchemes:
+    OAuth2UserRestricted:
+      type: oauth2
+      description: HMRC OAuth 2.0 Authorization Code grant (user-restricted)
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.service.hmrc.gov.uk/oauth/authorize
+          tokenUrl: https://api.service.hmrc.gov.uk/oauth/token
+          scopes:
+            write:vat: Submit VAT returns
+            read:vat: Read VAT data
+externalDocs:
+  description: HMRC VAT API Documentation
+  url: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0
