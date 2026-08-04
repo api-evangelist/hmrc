@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "f200d2ea-c15f-497a-a894-53db543f8086",
+    "name": "HMRC VAT (Making Tax Digital) Liabilities API",
+    "description": "The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.\n\nContact Support:\n Name: HMRC Developer Hub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:09.000Z",
+    "updatedAt": "2026-07-28T01:56:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f200d2ea-c15f-497a-a894-53db543f8086"
+  },
+  "item": [
+    {
+      "name": "organisations",
+      "item": [
+        {
+          "name": "vat",
+          "item": [
+            {
+              "name": "{vrn}",
+              "item": [
+                {
+                  "name": "liabilities",
+                  "item": [
+                    {
+                      "name": "Retrieve VAT liabilities",
+                      "id": "586a4be6-314c-4b6c-9aca-99b1c1ef9c74",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organisations/vat/:vrn/liabilities?from=<date>&to=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organisations",
+                            "vat",
+                            ":vrn",
+                            "liabilities"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "from",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "to",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "3ac62671-ddee-4ad7-a816-1ad97cf2719a",
+                              "key": "vrn",
+                              "value": "316845113",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves VAT financial liabilities owed by the business to HMRC including amounts due, outstanding balances, and due dates."
+                      },
+                      "response": [
+                        {
+                          "id": "638c3f3b-be69-4469-9876-69adb746427c",
+                          "name": "Liabilities returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/liabilities?from=<date>&to=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "liabilities"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "from",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "to",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"liabilities\": [\n    {\n      \"taxPeriod\": {\n        \"from\": \"<date>\",\n        \"to\": \"<date>\"\n      },\n      \"type\": \"<string>\",\n      \"originalAmount\": \"<number>\",\n      \"outstandingAmount\": \"<number>\",\n      \"due\": \"<date>\"\n    },\n    {\n      \"taxPeriod\": {\n        \"from\": \"<date>\",\n        \"to\": \"<date>\"\n      },\n      \"type\": \"<string>\",\n      \"originalAmount\": \"<number>\",\n      \"outstandingAmount\": \"<number>\",\n      \"due\": \"<date>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:56:09.000Z",
+                          "updatedAt": "2026-07-28T01:56:09.000Z",
+                          "uid": "35240-638c3f3b-be69-4469-9876-69adb746427c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:09.000Z",
+                      "updatedAt": "2026-07-28T01:56:09.000Z",
+                      "uid": "35240-586a4be6-314c-4b6c-9aca-99b1c1ef9c74"
+                    }
+                  ],
+                  "id": "4378ad8d-5097-4284-86d3-e2de81812d6f",
+                  "createdAt": "2026-07-28T01:56:09.000Z",
+                  "updatedAt": "2026-07-28T01:56:09.000Z",
+                  "uid": "35240-4378ad8d-5097-4284-86d3-e2de81812d6f"
+                }
+              ],
+              "id": "04c5aa86-51a3-4189-acc0-4fa550c9cfff",
+              "createdAt": "2026-07-28T01:56:09.000Z",
+              "updatedAt": "2026-07-28T01:56:09.000Z",
+              "uid": "35240-04c5aa86-51a3-4189-acc0-4fa550c9cfff"
+            }
+          ],
+          "id": "5f9e8ab3-9f9a-4c4d-8dd0-80a066cd8c0d",
+          "createdAt": "2026-07-28T01:56:09.000Z",
+          "updatedAt": "2026-07-28T01:56:09.000Z",
+          "uid": "35240-5f9e8ab3-9f9a-4c4d-8dd0-80a066cd8c0d"
+        }
+      ],
+      "id": "60d86328-5c23-4920-ae74-7b6c0b90ce3f",
+      "createdAt": "2026-07-28T01:56:09.000Z",
+      "updatedAt": "2026-07-28T01:56:09.000Z",
+      "uid": "35240-60d86328-5c23-4920-ae74-7b6c0b90ce3f"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "write:vat read:vat",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.service.hmrc.gov.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.service.hmrc.gov.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.service.hmrc.gov.uk"
+    }
+  ]
+}

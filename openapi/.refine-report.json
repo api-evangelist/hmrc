@@ -1,0 +1,20 @@
+{
+  "provider": "hmrc",
+  "sources": [
+    "hmrc-liabilities-api-openapi.yml",
+    "hmrc-obligations-api-openapi.yml",
+    "hmrc-payments-api-openapi.yml",
+    "hmrc-returns-api-openapi.yml"
+  ],
+  "outputs": [
+    "hmrc-liabilities-api-openapi.yml",
+    "hmrc-obligations-api-openapi.yml",
+    "hmrc-payments-api-openapi.yml",
+    "hmrc-returns-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

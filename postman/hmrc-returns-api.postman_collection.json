@@ -1,0 +1,582 @@
+{
+  "info": {
+    "_postman_id": "257898a9-36a9-434b-806c-7a1ebfbc6ae4",
+    "name": "HMRC VAT (Making Tax Digital) Liabilities Returns API",
+    "description": "The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.\n\nContact Support:\n Name: HMRC Developer Hub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:12.000Z",
+    "updatedAt": "2026-07-28T01:56:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-257898a9-36a9-434b-806c-7a1ebfbc6ae4"
+  },
+  "item": [
+    {
+      "name": "organisations",
+      "item": [
+        {
+          "name": "vat",
+          "item": [
+            {
+              "name": "{vrn}",
+              "item": [
+                {
+                  "name": "returns",
+                  "item": [
+                    {
+                      "name": "{periodKey}",
+                      "item": [
+                        {
+                          "name": "View a submitted VAT return",
+                          "id": "8855e25f-2f8d-4d5e-a2b5-64d1ab34c787",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/returns/:periodKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "returns",
+                                ":periodKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e8af08d3-6039-4021-81be-3e8644613917",
+                                  "key": "vrn",
+                                  "value": "666273586",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "03cdb217-e80e-4c6c-8f2e-d67d08f04009",
+                                  "key": "periodKey",
+                                  "value": "31QB",
+                                  "description": "(Required) Period key from the obligation (e.g., \"23AA\")"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a previously submitted VAT return for the specified period key."
+                          },
+                          "response": [
+                            {
+                              "id": "8c407aef-7b20-47bc-a395-f873ab8df0f9",
+                              "name": "VAT return retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organisations/vat/:vrn/returns/:periodKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organisations",
+                                    "vat",
+                                    ":vrn",
+                                    "returns",
+                                    ":periodKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "vrn"
+                                    },
+                                    {
+                                      "key": "periodKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"periodKey\": \"<string>\",\n  \"vatDueSales\": \"<number>\",\n  \"vatDueAcquisitions\": \"<number>\",\n  \"totalVatDue\": \"<number>\",\n  \"vatReclaimedCurrPeriod\": \"<number>\",\n  \"netVatDue\": \"<number>\",\n  \"totalValueSalesExVAT\": \"<number>\",\n  \"totalValuePurchasesExVAT\": \"<number>\",\n  \"totalValueGoodsSuppliedExVAT\": \"<number>\",\n  \"totalAcquisitionsExVAT\": \"<number>\",\n  \"finalised\": \"<boolean>\"\n}",
+                              "createdAt": "2026-07-28T01:56:13.000Z",
+                              "updatedAt": "2026-07-28T01:56:13.000Z",
+                              "uid": "35240-8c407aef-7b20-47bc-a395-f873ab8df0f9"
+                            },
+                            {
+                              "id": "c939ef4b-e6a1-4603-a55b-e82fb7c87efc",
+                              "name": "Return not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organisations/vat/:vrn/returns/:periodKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organisations",
+                                    "vat",
+                                    ":vrn",
+                                    "returns",
+                                    ":periodKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "vrn"
+                                    },
+                                    {
+                                      "key": "periodKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:56:13.000Z",
+                              "updatedAt": "2026-07-28T01:56:13.000Z",
+                              "uid": "35240-c939ef4b-e6a1-4603-a55b-e82fb7c87efc"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:56:13.000Z",
+                          "updatedAt": "2026-07-28T01:56:13.000Z",
+                          "uid": "35240-8855e25f-2f8d-4d5e-a2b5-64d1ab34c787"
+                        }
+                      ],
+                      "id": "6dd19677-86ea-45c6-b4ac-f472ab286818",
+                      "createdAt": "2026-07-28T01:56:12.000Z",
+                      "updatedAt": "2026-07-28T01:56:12.000Z",
+                      "uid": "35240-6dd19677-86ea-45c6-b4ac-f472ab286818"
+                    },
+                    {
+                      "name": "Submit a VAT return",
+                      "id": "bc69c18e-0d18-43e1-b849-b59c0cffa0ee",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) ",
+                            "key": "Gov-Client-Connection-Method",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "(Required) ",
+                            "key": "Gov-Vendor-Version",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"periodKey\": \"<string>\",\n  \"vatDueSales\": \"<number>\",\n  \"vatDueAcquisitions\": \"<number>\",\n  \"totalVatDue\": \"<number>\",\n  \"vatReclaimedCurrPeriod\": \"<number>\",\n  \"netVatDue\": \"<number>\",\n  \"totalValueSalesExVAT\": \"<number>\",\n  \"totalValuePurchasesExVAT\": \"<number>\",\n  \"totalValueGoodsSuppliedExVAT\": \"<number>\",\n  \"totalAcquisitionsExVAT\": \"<number>\",\n  \"finalised\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organisations/vat/:vrn/returns",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organisations",
+                            "vat",
+                            ":vrn",
+                            "returns"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bd86132f-fa98-4dc7-b43a-bd3c9df7d76b",
+                              "key": "vrn",
+                              "value": "666273586",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Submits a VAT return for the specified VRN and period key. The return must be for an open obligation. Duplicate submissions are rejected. Finalisation is indicated by the 'finalised' field being true."
+                      },
+                      "response": [
+                        {
+                          "id": "a2864ad4-fdfe-44f4-a82f-cf3a4240b3f9",
+                          "name": "VAT return accepted",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"periodKey\": \"<string>\",\n  \"vatDueSales\": \"<number>\",\n  \"vatDueAcquisitions\": \"<number>\",\n  \"totalVatDue\": \"<number>\",\n  \"vatReclaimedCurrPeriod\": \"<number>\",\n  \"netVatDue\": \"<number>\",\n  \"totalValueSalesExVAT\": \"<number>\",\n  \"totalValuePurchasesExVAT\": \"<number>\",\n  \"totalValueGoodsSuppliedExVAT\": \"<number>\",\n  \"totalAcquisitionsExVAT\": \"<number>\",\n  \"finalised\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/returns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "returns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"processingDate\": \"<dateTime>\",\n  \"formBundleNumber\": \"<string>\",\n  \"paymentIndicator\": \"DD\",\n  \"chargeRefNumber\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:13.000Z",
+                          "updatedAt": "2026-07-28T01:56:13.000Z",
+                          "uid": "35240-a2864ad4-fdfe-44f4-a82f-cf3a4240b3f9"
+                        },
+                        {
+                          "id": "5f8c5d30-2bd6-4967-b593-e7469d852f22",
+                          "name": "Invalid VAT return data",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"periodKey\": \"<string>\",\n  \"vatDueSales\": \"<number>\",\n  \"vatDueAcquisitions\": \"<number>\",\n  \"totalVatDue\": \"<number>\",\n  \"vatReclaimedCurrPeriod\": \"<number>\",\n  \"netVatDue\": \"<number>\",\n  \"totalValueSalesExVAT\": \"<number>\",\n  \"totalValuePurchasesExVAT\": \"<number>\",\n  \"totalValueGoodsSuppliedExVAT\": \"<number>\",\n  \"totalAcquisitionsExVAT\": \"<number>\",\n  \"finalised\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/returns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "returns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"path\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"path\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:56:13.000Z",
+                          "updatedAt": "2026-07-28T01:56:13.000Z",
+                          "uid": "35240-5f8c5d30-2bd6-4967-b593-e7469d852f22"
+                        },
+                        {
+                          "id": "ec35e2d4-03f9-4b57-8c07-9673fe1dc851",
+                          "name": "Duplicate submission or period is closed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"periodKey\": \"<string>\",\n  \"vatDueSales\": \"<number>\",\n  \"vatDueAcquisitions\": \"<number>\",\n  \"totalVatDue\": \"<number>\",\n  \"vatReclaimedCurrPeriod\": \"<number>\",\n  \"netVatDue\": \"<number>\",\n  \"totalValueSalesExVAT\": \"<number>\",\n  \"totalValuePurchasesExVAT\": \"<number>\",\n  \"totalValueGoodsSuppliedExVAT\": \"<number>\",\n  \"totalAcquisitionsExVAT\": \"<number>\",\n  \"finalised\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/returns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "returns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:56:13.000Z",
+                          "updatedAt": "2026-07-28T01:56:13.000Z",
+                          "uid": "35240-ec35e2d4-03f9-4b57-8c07-9673fe1dc851"
+                        },
+                        {
+                          "id": "ed57213a-5d84-4d4f-b2a1-99faa26376f0",
+                          "name": "VRN not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) ",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"periodKey\": \"<string>\",\n  \"vatDueSales\": \"<number>\",\n  \"vatDueAcquisitions\": \"<number>\",\n  \"totalVatDue\": \"<number>\",\n  \"vatReclaimedCurrPeriod\": \"<number>\",\n  \"netVatDue\": \"<number>\",\n  \"totalValueSalesExVAT\": \"<number>\",\n  \"totalValuePurchasesExVAT\": \"<number>\",\n  \"totalValueGoodsSuppliedExVAT\": \"<number>\",\n  \"totalAcquisitionsExVAT\": \"<number>\",\n  \"finalised\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/returns",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "returns"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:56:13.000Z",
+                          "updatedAt": "2026-07-28T01:56:13.000Z",
+                          "uid": "35240-ed57213a-5d84-4d4f-b2a1-99faa26376f0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:13.000Z",
+                      "updatedAt": "2026-07-28T01:56:13.000Z",
+                      "uid": "35240-bc69c18e-0d18-43e1-b849-b59c0cffa0ee"
+                    }
+                  ],
+                  "id": "4de42f80-ab4f-4c65-a489-36f8c9f2c488",
+                  "createdAt": "2026-07-28T01:56:12.000Z",
+                  "updatedAt": "2026-07-28T01:56:12.000Z",
+                  "uid": "35240-4de42f80-ab4f-4c65-a489-36f8c9f2c488"
+                }
+              ],
+              "id": "822e11b8-37a0-45a3-b248-84d30685a174",
+              "createdAt": "2026-07-28T01:56:12.000Z",
+              "updatedAt": "2026-07-28T01:56:12.000Z",
+              "uid": "35240-822e11b8-37a0-45a3-b248-84d30685a174"
+            }
+          ],
+          "id": "393979ae-13c1-4015-ba84-9c7fb6bb7b39",
+          "createdAt": "2026-07-28T01:56:12.000Z",
+          "updatedAt": "2026-07-28T01:56:12.000Z",
+          "uid": "35240-393979ae-13c1-4015-ba84-9c7fb6bb7b39"
+        }
+      ],
+      "id": "cd854280-4414-4c18-a53b-7e9e473f17b9",
+      "createdAt": "2026-07-28T01:56:12.000Z",
+      "updatedAt": "2026-07-28T01:56:12.000Z",
+      "uid": "35240-cd854280-4414-4c18-a53b-7e9e473f17b9"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "write:vat read:vat",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.service.hmrc.gov.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.service.hmrc.gov.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.service.hmrc.gov.uk"
+    }
+  ]
+}

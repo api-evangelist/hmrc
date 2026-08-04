@@ -1,0 +1,435 @@
+{
+  "info": {
+    "_postman_id": "0eac008a-eb84-456a-ae3b-c7ed77d3db41",
+    "name": "HMRC VAT (Making Tax Digital) Liabilities Obligations API",
+    "description": "The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.\n\nContact Support:\n Name: HMRC Developer Hub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:10.000Z",
+    "updatedAt": "2026-07-28T01:56:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0eac008a-eb84-456a-ae3b-c7ed77d3db41"
+  },
+  "item": [
+    {
+      "name": "organisations",
+      "item": [
+        {
+          "name": "vat",
+          "item": [
+            {
+              "name": "{vrn}",
+              "item": [
+                {
+                  "name": "obligations",
+                  "item": [
+                    {
+                      "name": "Retrieve VAT obligations",
+                      "id": "6ae4b281-5ffc-4a36-9a8b-8b250e12a2dc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Fraud prevention header \u2013 client connection method",
+                            "key": "Gov-Client-Connection-Method",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "(Required) Fraud prevention header \u2013 vendor application version",
+                            "key": "Gov-Vendor-Version",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organisations/vat/:vrn/obligations?from=<date>&to=<date>&status=A",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organisations",
+                            "vat",
+                            ":vrn",
+                            "obligations"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Obligation period start date (YYYY-MM-DD), minimum 2017-01-01",
+                              "key": "from",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) Obligation period end date (must be within 366 days of 'from')",
+                              "key": "to",
+                              "value": "<date>"
+                            },
+                            {
+                              "key": "status",
+                              "value": "A"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "91a8765e-8566-4287-bf2c-a84ca60d7c2d",
+                              "key": "vrn",
+                              "value": "844473081",
+                              "description": "(Required) VAT Registration Number (9 digits)"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves VAT return filing obligations for the specified VAT Registration Number (VRN). Returns periods for which returns must be filed, due dates, and status (Open, Fulfilled) within the requested date range."
+                      },
+                      "response": [
+                        {
+                          "id": "8c5e550d-b70c-4c45-bf04-008ce65128cd",
+                          "name": "VAT obligations returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 client connection method",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 vendor application version",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/obligations?from=<date>&to=<date>&status=A",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "obligations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Obligation period start date (YYYY-MM-DD), minimum 2017-01-01",
+                                  "key": "from",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) Obligation period end date (must be within 366 days of 'from')",
+                                  "key": "to",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "status",
+                                  "value": "A"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"obligations\": [\n    {\n      \"periodKey\": \"<string>\",\n      \"start\": \"<date>\",\n      \"end\": \"<date>\",\n      \"due\": \"<date>\",\n      \"status\": \"O\",\n      \"received\": \"<date>\"\n    },\n    {\n      \"periodKey\": \"<string>\",\n      \"start\": \"<date>\",\n      \"end\": \"<date>\",\n      \"due\": \"<date>\",\n      \"status\": \"F\",\n      \"received\": \"<date>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:56:10.000Z",
+                          "updatedAt": "2026-07-28T01:56:10.000Z",
+                          "uid": "35240-8c5e550d-b70c-4c45-bf04-008ce65128cd"
+                        },
+                        {
+                          "id": "f3ffb7e8-0edb-4c15-834f-8ee7c169528e",
+                          "name": "Invalid VRN or date range",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 client connection method",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 vendor application version",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/obligations?from=<date>&to=<date>&status=A",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "obligations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Obligation period start date (YYYY-MM-DD), minimum 2017-01-01",
+                                  "key": "from",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) Obligation period end date (must be within 366 days of 'from')",
+                                  "key": "to",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "status",
+                                  "value": "A"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"path\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\",\n      \"path\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:56:10.000Z",
+                          "updatedAt": "2026-07-28T01:56:10.000Z",
+                          "uid": "35240-f3ffb7e8-0edb-4c15-834f-8ee7c169528e"
+                        },
+                        {
+                          "id": "265e0b02-b1a2-428c-9c18-94008d96e0bb",
+                          "name": "Client not subscribed to MTD VAT",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 client connection method",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 vendor application version",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/obligations?from=<date>&to=<date>&status=A",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "obligations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Obligation period start date (YYYY-MM-DD), minimum 2017-01-01",
+                                  "key": "from",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) Obligation period end date (must be within 366 days of 'from')",
+                                  "key": "to",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "status",
+                                  "value": "A"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:56:10.000Z",
+                          "updatedAt": "2026-07-28T01:56:10.000Z",
+                          "uid": "35240-265e0b02-b1a2-428c-9c18-94008d96e0bb"
+                        },
+                        {
+                          "id": "798f5f45-1005-4cea-a6f5-6199d1beeacf",
+                          "name": "No obligations found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 client connection method",
+                                "key": "Gov-Client-Connection-Method",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "(Required) Fraud prevention header \u2013 vendor application version",
+                                "key": "Gov-Vendor-Version",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organisations/vat/:vrn/obligations?from=<date>&to=<date>&status=A",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organisations",
+                                "vat",
+                                ":vrn",
+                                "obligations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Obligation period start date (YYYY-MM-DD), minimum 2017-01-01",
+                                  "key": "from",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "description": "(Required) Obligation period end date (must be within 366 days of 'from')",
+                                  "key": "to",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "status",
+                                  "value": "A"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vrn"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:56:10.000Z",
+                          "updatedAt": "2026-07-28T01:56:10.000Z",
+                          "uid": "35240-798f5f45-1005-4cea-a6f5-6199d1beeacf"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:10.000Z",
+                      "updatedAt": "2026-07-28T01:56:10.000Z",
+                      "uid": "35240-6ae4b281-5ffc-4a36-9a8b-8b250e12a2dc"
+                    }
+                  ],
+                  "id": "5fc7be8c-fa3e-49fc-a2df-c494b385aa41",
+                  "createdAt": "2026-07-28T01:56:10.000Z",
+                  "updatedAt": "2026-07-28T01:56:10.000Z",
+                  "uid": "35240-5fc7be8c-fa3e-49fc-a2df-c494b385aa41"
+                }
+              ],
+              "id": "14aaa31a-79ef-4305-820b-4f84191c0f5a",
+              "createdAt": "2026-07-28T01:56:10.000Z",
+              "updatedAt": "2026-07-28T01:56:10.000Z",
+              "uid": "35240-14aaa31a-79ef-4305-820b-4f84191c0f5a"
+            }
+          ],
+          "id": "7fcfa042-8c84-435a-a1ed-e3174dc3a12e",
+          "createdAt": "2026-07-28T01:56:10.000Z",
+          "updatedAt": "2026-07-28T01:56:10.000Z",
+          "uid": "35240-7fcfa042-8c84-435a-a1ed-e3174dc3a12e"
+        }
+      ],
+      "id": "a09cfc61-632b-4ca9-9314-2c0a75c18c8b",
+      "createdAt": "2026-07-28T01:56:10.000Z",
+      "updatedAt": "2026-07-28T01:56:10.000Z",
+      "uid": "35240-a09cfc61-632b-4ca9-9314-2c0a75c18c8b"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "write:vat read:vat",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.service.hmrc.gov.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.service.hmrc.gov.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.service.hmrc.gov.uk"
+    }
+  ]
+}
