@@ -214,7 +214,7 @@ common:
   - type: Website
     url: https://www.gov.uk/government/organisations/hm-revenue-customs
   - type: OpenAPI
-    url: openapi/hmrc-vat-mtd-openapi.yml
+    url: openapi/_original/hmrc-vat-mtd-openapi.yml
   - type: JSONSchema
     url: json-schema/hmrc-vat-return-schema.json
   - type: JSONLDContext
