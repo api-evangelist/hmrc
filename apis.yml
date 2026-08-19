@@ -28,7 +28,7 @@ tags:
   - UK
 created: '2025'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: hmrc:hmrc-self-assessment-api
   name: HMRC Self Assessment API
