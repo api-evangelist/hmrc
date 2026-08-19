@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HMRC VAT (Making Tax Digital) Liabilities Returns API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.service.hmrc.gov.uk/oauth/authorize",
+      "accessTokenUrl": "https://api.service.hmrc.gov.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a VAT return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.service.hmrc.gov.uk/organisations/vat/:vrn/returns",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "Gov-Client-Connection-Method",
+                "value": ""
+              },
+              {
+                "name": "Gov-Vendor-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vrn",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a VAT return for the specified VRN and period key. The return must be for an open obligation. Duplicate submissions are rejected. Finalisation is indicated by the 'finalised' field being true."
+        },
+        {
+          "info": {
+            "name": "View a submitted VAT return",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.service.hmrc.gov.uk/organisations/vat/:vrn/returns/:periodKey",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vrn",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodKey",
+                "value": "",
+                "type": "path",
+                "description": "Period key from the obligation (e.g., \"23AA\")"
+              }
+            ]
+          },
+          "docs": "Retrieves a previously submitted VAT return for the specified period key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

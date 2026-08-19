@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HMRC VAT (Making Tax Digital) Liabilities Payments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.service.hmrc.gov.uk/oauth/authorize",
+      "accessTokenUrl": "https://api.service.hmrc.gov.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve VAT payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.service.hmrc.gov.uk/organisations/vat/:vrn/payments",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "vrn",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of VAT payments made by the business to HMRC within the specified date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
