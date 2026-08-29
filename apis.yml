@@ -193,6 +193,9 @@ apis:
   - type: Authentication
     url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
 common:
+  - type: CapabilityMap
+    url: capabilities/hmrc-capability-edges.yml
+    name: HMRC UK Tax Authority Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/hmrc-uk-tax-authority/overview
   - type: AgenticAccess

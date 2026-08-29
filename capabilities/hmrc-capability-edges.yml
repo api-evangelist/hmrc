@@ -1,0 +1,52 @@
+slug: hmrc
+provider: HMRC UK Tax Authority
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Public Sector & Government
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Returns
+  spec_file: hmrc-returns-api-openapi.yml
+  capability_id: BC-3250.20
+  capability_id_l1: BC-3250
+  capability_name: Return Processing & Assessment
+  confidence: 0.85
+  evidence: POST /organisations/vat/{vrn}/returns — Submit a VAT return; schemas VatReturnRequest, VatReturnConfirmation
+  reason: Receipt and confirmation of VAT return submissions under Making Tax Digital — government-side
+    return processing and assessment of an indirect tax.
+- tag: Liabilities
+  spec_file: hmrc-liabilities-api-openapi.yml
+  capability_id: BC-3250
+  capability_id_l1: BC-3250
+  capability_name: Tax & Revenue Administration Management
+  confidence: 0.7
+  evidence: GET /organisations/vat/{vrn}/liabilities — Retrieve VAT liabilities; schema VatLiability
+  reason: Tax-authority surface exposing assessed VAT amounts owed by a registered business — government
+    tax and revenue administration; ambiguous between assessment and collection sub-capabilities so L1
+    only.
+- tag: Obligations
+  spec_file: hmrc-obligations-api-openapi.yml
+  capability_id: BC-3250
+  capability_id_l1: BC-3250
+  capability_name: Tax & Revenue Administration Management
+  confidence: 0.7
+  evidence: GET /organisations/vat/{vrn}/obligations — Retrieve VAT obligations; schema ObligationsResponse
+  reason: Exposes statutory VAT filing obligations/periods held by the tax authority for a VRN — tax administration;
+    too thin to choose a specific sub-capability.
+- tag: Payments
+  spec_file: hmrc-payments-api-openapi.yml
+  capability_id: BC-3250.30
+  capability_id_l1: BC-3250
+  capability_name: Revenue Collection Operations
+  confidence: 0.7
+  evidence: GET /organisations/vat/{vrn}/payments — Retrieve VAT payments; schema VatPayment
+  reason: Retrieval of VAT payments received by HMRC against a taxpayer's account — the revenue collection
+    record of the tax authority.
