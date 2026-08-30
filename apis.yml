@@ -31,7 +31,6 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
 tags:
   - Government
   - Making Tax Digital
@@ -50,7 +49,6 @@ apis:
     Tax.
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
-  image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
   tags:
   - Government
   - Income Tax
@@ -70,7 +68,6 @@ apis:
     employee records, and manage PAYE submissions for Real Time Information (RTI) reporting.
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
-  image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
   tags:
   - Government
   - PAYE
@@ -90,7 +87,6 @@ apis:
     manage authorizations, and integrate with the UK Customs Declaration Service (CDS) for trade compliance.
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
-  image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
   tags:
   - Customs
   - Excise
@@ -111,7 +107,6 @@ apis:
     liabilities, manage payments, and access tax calculation data for UK businesses.
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
-  image: https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/image.png
   tags:
   - Business
   - Corporation Tax
