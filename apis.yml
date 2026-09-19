@@ -36,6 +36,12 @@ tags:
   - Making Tax Digital
   - Regulatory
   - Tax
+  - United Kingdom
+tags_raw:
+  - Government
+  - Making Tax Digital
+  - Regulatory
+  - Tax
   - UK
 created: '2025'
 modified: '2026-05-19'
@@ -50,6 +56,13 @@ apis:
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
   tags:
+  - Government
+  - Income Tax
+  - REST
+  - Self Assessment
+  - Tax
+  - United Kingdom
+  tags_raw:
   - Government
   - Income Tax
   - REST
@@ -74,6 +87,13 @@ apis:
   - Payroll
   - REST
   - Tax
+  - United Kingdom
+  tags_raw:
+  - Government
+  - PAYE
+  - Payroll
+  - REST
+  - Tax
   - UK
   properties:
   - type: Documentation
@@ -88,6 +108,14 @@ apis:
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
   tags:
+  - Customs
+  - Excise
+  - Government
+  - REST
+  - Tax
+  - United Kingdom
+  - XML
+  tags_raw:
   - Customs
   - Excise
   - Government
@@ -108,6 +136,13 @@ apis:
   humanURL: https://developer.service.hmrc.gov.uk/api-documentation/docs/api
   baseURL: https://api.service.hmrc.gov.uk
   tags:
+  - Business
+  - Corporation Tax
+  - Government
+  - REST
+  - Tax
+  - United Kingdom
+  tags_raw:
   - Business
   - Corporation Tax
   - Government
