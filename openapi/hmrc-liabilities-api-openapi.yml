@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: HMRC VAT (Making Tax Digital) Liabilities API
   description: The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.
@@ -60,6 +60,13 @@ paths:
                 $ref: '#/components/schemas/LiabilitiesResponse'
 components:
   schemas:
+    LiabilitiesResponse:
+      type: object
+      properties:
+        liabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatLiability'
     VatLiability:
       type: object
       properties:
@@ -85,13 +92,6 @@ components:
           type: string
           format: date
           description: Payment due date
-    LiabilitiesResponse:
-      type: object
-      properties:
-        liabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/VatLiability'
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2

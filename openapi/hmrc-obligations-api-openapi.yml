@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: HMRC VAT (Making Tax Digital) Liabilities Obligations API
+  title: HMRC VAT (Making Tax Digital) Obligations API
   description: The HMRC VAT Making Tax Digital (MTD) API enables VAT-registered businesses and agents to submit VAT returns, view VAT obligations, liabilities, and payments, in compliance with UK Making Tax Digital requirements. Requires OAuth 2.0 authentication and mandatory fraud prevention headers on all requests.
   version: 1.0.0
   contact:
@@ -96,6 +96,26 @@ paths:
           description: No obligations found
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
     ObligationsResponse:
       type: object
       properties:
@@ -131,26 +151,6 @@ components:
           type: string
           format: date
           description: Date return was received (populated when Fulfilled)
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: HMRC error code
-        message:
-          type: string
-          description: Human-readable error description
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-              path:
-                type: string
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2
