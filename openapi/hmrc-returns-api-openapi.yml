@@ -177,13 +177,6 @@ components:
         finalised:
           type: boolean
           description: Declaration that the submission is a final return for the period
-    VatReturn:
-      allOf:
-      - $ref: '#/components/schemas/VatReturnRequest'
-      - type: object
-        properties:
-          periodKey:
-            type: string
     VatReturnConfirmation:
       type: object
       properties:
@@ -204,6 +197,13 @@ components:
         chargeRefNumber:
           type: string
           description: Charge reference number (if applicable)
+    VatReturn:
+      allOf:
+      - $ref: '#/components/schemas/VatReturnRequest'
+      - type: object
+        properties:
+          periodKey:
+            type: string
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2
