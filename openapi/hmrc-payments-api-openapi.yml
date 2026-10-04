@@ -62,13 +62,6 @@ paths:
           description: No payments found
 components:
   schemas:
-    PaymentsResponse:
-      type: object
-      properties:
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/VatPayment'
     VatPayment:
       type: object
       properties:
@@ -79,6 +72,13 @@ components:
           type: string
           format: date
           description: Date payment received by HMRC
+    PaymentsResponse:
+      type: object
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatPayment'
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2

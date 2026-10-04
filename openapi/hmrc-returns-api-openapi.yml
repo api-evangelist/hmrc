@@ -109,26 +109,6 @@ paths:
           description: Return not found
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: HMRC error code
-        message:
-          type: string
-          description: Human-readable error description
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-              path:
-                type: string
     VatReturnRequest:
       type: object
       required:
@@ -197,6 +177,26 @@ components:
         chargeRefNumber:
           type: string
           description: Charge reference number (if applicable)
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
     VatReturn:
       allOf:
       - $ref: '#/components/schemas/VatReturnRequest'

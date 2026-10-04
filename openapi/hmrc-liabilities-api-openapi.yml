@@ -60,13 +60,6 @@ paths:
                 $ref: '#/components/schemas/LiabilitiesResponse'
 components:
   schemas:
-    LiabilitiesResponse:
-      type: object
-      properties:
-        liabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/VatLiability'
     VatLiability:
       type: object
       properties:
@@ -92,6 +85,13 @@ components:
           type: string
           format: date
           description: Payment due date
+    LiabilitiesResponse:
+      type: object
+      properties:
+        liabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/VatLiability'
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2
