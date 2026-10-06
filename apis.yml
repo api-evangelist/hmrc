@@ -44,7 +44,7 @@ tags_raw:
   - Tax
   - UK
 created: '2025'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: hmrc:hmrc-self-assessment-api
@@ -223,6 +223,10 @@ apis:
   - type: Authentication
     url: https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation
 common:
+  - url: https://www.gov.uk/search/news-and-communications
+    type: Blog
+  - url: https://www.gov.uk/search/news-and-communications.atom
+    type: BlogRSS
   - type: CapabilityMap
     url: capabilities/hmrc-capability-edges.yml
     name: HMRC UK Tax Authority Business Capability Map
