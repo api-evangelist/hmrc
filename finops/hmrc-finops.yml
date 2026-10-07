@@ -188,10 +188,8 @@ apis:
 unitEconomics:
   - name: Throttle Pressure
     metric: throttled_responses / api_requests
-    target: '< 0.1%'
   - name: Cost per HMRC Submission (consumer side)
     metric: consumer_engineering_and_saas_cost / submissions
-    target: TBD
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
