@@ -1,0 +1,215 @@
+edges:
+- partner_name: UK Government API Catalogue (CDDO)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
+  match:
+    method: domain+verified
+    domains:
+    - hmrc.gov.uk
+  register_listing:
+    publisher: hm-revenue-customs
+    apis:
+    - name: Agent Authorisation
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/agent-authorisation-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Business Rates
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/business-rates-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Interest Restrictition Return (IRR)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/interest-restriction-return
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Bulk Data File List
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/secure-data-exchange-bulk-download
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Check an EORI Number
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/check-eori-number-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Common Transit Convention Traders
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/common-transit-convention-traders
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Customs Inventory Linking Exports
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/customs-inventory-linking-exports
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Goods Vehicle Movements
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/goods-movement-system-haulier-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Safety and Security Import Declarations
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/import-control-entry-declaration-store
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Safety and Security Import Notifications
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/import-control-entry-declaration-intervention
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Safety and Security Import Outcomes
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/import-control-entry-declaration-outcome
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Business Details (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/business-details-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Business Income Source Summary (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/self-assessment-biss-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Business Source Adjustable Summary (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/self-assessment-bsas-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: CIS Deductions (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/cis-deductions-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Individual Calculations (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/individual-calculations-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Individual Losses (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/individual-losses-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Obligations (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/obligations-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Self Assessment (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api?filter=self-assessment
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Self Assessment Accounts (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/self-assessment-accounts-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Lifetime ISA
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/lisa-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: National Insurance
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/national-insurance
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Marriage Allowance
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/marriage-allowance
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Relief at Source
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/ras-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Individual Benefits
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/individual-benefits
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Individual Employment
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/individual-employment
+      license: null
+      date_updated: '2023-05-02'
+      matched_on: url
+    - name: Individual Income
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/individual-income
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Individual Tax
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/individual-tax
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: VAT (MTD)
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+    - name: Push Pull Notifications
+      url: https://api.service.hmrc.gov.uk
+      documentation: https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/push-pull-notifications-api
+      license: null
+      date_updated: '2020-09-02'
+      matched_on: url
+  contract_reference:
+    register: co-cddo/api-catalogue (UK Government API Catalogue, CDDO)
+    spec_file: null
+    role: public-sector-api-publisher
+    registered_name: hm-revenue-customs
+    register_id: hm-revenue-customs
+    matched_domain: hmrc.gov.uk
+    detected_by: sweep-gov-open-data.py
+    detected: '2026-10-15'
+  detected_by: sweep-gov-open-data.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- 'https://api.gouv.fr/api/v1/apis (200 text/html: not machine-readable)'
+- 'https://catalog.data.gov/api/3/action/package_search (404; GSA mirror keyed: 403 API_KEY_MISSING)'
+- https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
+source:
+- https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
