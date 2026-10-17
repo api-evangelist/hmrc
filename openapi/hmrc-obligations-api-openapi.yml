@@ -96,6 +96,33 @@ paths:
           description: No obligations found
 components:
   schemas:
+    ObligationsResponse:
+      type: object
+      properties:
+        obligations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Obligation'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
     Obligation:
       type: object
       properties:
@@ -124,33 +151,6 @@ components:
           type: string
           format: date
           description: Date return was received (populated when Fulfilled)
-    ObligationsResponse:
-      type: object
-      properties:
-        obligations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Obligation'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: HMRC error code
-        message:
-          type: string
-          description: Human-readable error description
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-              path:
-                type: string
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2

@@ -109,6 +109,53 @@ paths:
           description: Return not found
 components:
   schemas:
+    VatReturn:
+      allOf:
+      - $ref: '#/components/schemas/VatReturnRequest'
+      - type: object
+        properties:
+          periodKey:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: HMRC error code
+        message:
+          type: string
+          description: Human-readable error description
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
+    VatReturnConfirmation:
+      type: object
+      properties:
+        processingDate:
+          type: string
+          format: date-time
+          description: Date and time HMRC received the VAT return
+        formBundleNumber:
+          type: string
+          description: HMRC form bundle reference number (14 digits)
+        paymentIndicator:
+          type: string
+          enum:
+          - BANK
+          - DD
+          - CHAPS
+          description: Preferred payment method held on HMRC record
+        chargeRefNumber:
+          type: string
+          description: Charge reference number (if applicable)
     VatReturnRequest:
       type: object
       required:
@@ -157,53 +204,6 @@ components:
         finalised:
           type: boolean
           description: Declaration that the submission is a final return for the period
-    VatReturnConfirmation:
-      type: object
-      properties:
-        processingDate:
-          type: string
-          format: date-time
-          description: Date and time HMRC received the VAT return
-        formBundleNumber:
-          type: string
-          description: HMRC form bundle reference number (14 digits)
-        paymentIndicator:
-          type: string
-          enum:
-          - BANK
-          - DD
-          - CHAPS
-          description: Preferred payment method held on HMRC record
-        chargeRefNumber:
-          type: string
-          description: Charge reference number (if applicable)
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: HMRC error code
-        message:
-          type: string
-          description: Human-readable error description
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              message:
-                type: string
-              path:
-                type: string
-    VatReturn:
-      allOf:
-      - $ref: '#/components/schemas/VatReturnRequest'
-      - type: object
-        properties:
-          periodKey:
-            type: string
   securitySchemes:
     OAuth2UserRestricted:
       type: oauth2
