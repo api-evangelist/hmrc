@@ -1,4 +1,4 @@
-# HMRC UK Tax Authority (hmrc)
+# HMRC UK Tax Authority
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,162 +66,183 @@
 
 HM Revenue and Customs (HMRC) provides over 115 APIs through the HMRC Developer Hub for UK tax compliance including Making Tax Digital for VAT and Income Tax, PAYE, customs declarations, corporation tax, and construction industry scheme. APIs use OAuth 2.0 and support both REST and XML protocols with a sandbox testing environment.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hmrc/refs/heads/main/apis.yml)
+**Areas:** Government · Making Tax Digital · Regulatory · Tax · United Kingdom
 
-## Scope
+## HMRC UK Tax Authority on APIs.io
 
-- **Type:** Index
+Everything profiled for HMRC UK Tax Authority is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hmrc/](https://apis.io/providers/hmrc/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Government
-- Making Tax Digital
-- Regulatory
-- Tax
-- UK
+- [HMRC Self Assessment API](https://apis.io/apis/hmrc/hmrc-self-assessment-api/) — The HMRC Self Assessment APIs enable software to submit and manage self assessment tax returns, income sources, and tax calculations for individuals and…
+- [HMRC PAYE (Pay As You Earn) API](https://apis.io/apis/hmrc/hmrc-paye-api/) — The HMRC PAYE APIs enable payroll software to submit employer payroll data, retrieve tax codes and employee records, and manage PAYE submissions for Real…
+- [HMRC Customs Declarations API](https://apis.io/apis/hmrc/hmrc-customs-declarations-api/) — The HMRC Customs Declarations APIs enable customs software to submit import and export declarations, manage authorizations, and integrate with the UK…
+- [HMRC Corporation Tax API](https://apis.io/apis/hmrc/hmrc-corporation-tax-api/) — The HMRC Corporation Tax APIs enable accounting software to submit corporation tax returns, retrieve liabilities, manage payments, and access tax…
+- [HMRC UK Tax Authority Liabilities API](https://apis.io/apis/hmrc/hmrc-liabilities-api/) — VAT financial liabilities
+- [HMRC UK Tax Authority Obligations API](https://apis.io/apis/hmrc/hmrc-obligations-api/) — VAT return filing obligations
+- [HMRC UK Tax Authority Payments API](https://apis.io/apis/hmrc/hmrc-payments-api/) — VAT payments made to HMRC
+- [HMRC UK Tax Authority Returns API](https://apis.io/apis/hmrc/hmrc-returns-api/) — VAT return submission
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### HMRC VAT (Making Tax Digital) API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The HMRC VAT (Making Tax Digital) API enables software to submit VAT returns, retrieve VAT obligations, liabilities, payments, penalties, and customer details in compliance with UK Making Tax Digital requirements. Uses OAuth 2.0 authentication with fraud prevention headers required.
+- [Hmrc Agentic Access](https://apis.io/agentic-access/hmrc/hmrc-agentic-access/)
 
-- **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0)
-- **Base URL:** `https://api.service.hmrc.gov.uk`
+#### JSON Schema (11)
 
-#### Tags
+The data models the API reads and writes.
 
-- Government
-- Making Tax Digital
-- REST
-- Tax
-- UK
-- VAT
+- [Error](https://apis.io/schemas/hmrc/hmrc-error/)
+- [LiabilitiesResponse](https://apis.io/schemas/hmrc/hmrc-liabilitiesresponse/)
+- [Obligation](https://apis.io/schemas/hmrc/hmrc-obligation/)
+- [ObligationsResponse](https://apis.io/schemas/hmrc/hmrc-obligationsresponse/)
+- [PaymentsResponse](https://apis.io/schemas/hmrc/hmrc-paymentsresponse/)
+- [HMRC VAT Return](https://apis.io/schemas/hmrc/hmrc-vat-return/)
+- [VatLiability](https://apis.io/schemas/hmrc/hmrc-vatliability/)
+- [VatPayment](https://apis.io/schemas/hmrc/hmrc-vatpayment/)
+- [VatReturn](https://apis.io/schemas/hmrc/hmrc-vatreturn/)
+- [VatReturnConfirmation](https://apis.io/schemas/hmrc/hmrc-vatreturnconfirmation/)
+- [VatReturnRequest](https://apis.io/schemas/hmrc/hmrc-vatreturnrequest/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0)
-- [Reference](https://developer.service.hmrc.gov.uk/api-documentation/docs/api/service/vat-api/1.0/oas/page)
-- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
-- [OpenAPI](openapi/hmrc-vat-mtd-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hmrc-vat-mtd.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hmrc-vat-mtd.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### HMRC Self Assessment API
+- [Hmrc Structure](https://apis.io/json-structure/hmrc/hmrc-structure/)
 
-The HMRC Self Assessment APIs enable software to submit and manage self assessment tax returns, income sources, and tax calculations for individuals and sole traders under Making Tax Digital for Income Tax.
+#### JSON-LD (1)
 
-- **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- **Base URL:** `https://api.service.hmrc.gov.uk`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Hmrc Context](https://apis.io/jsonld/hmrc/hmrc-context/)
 
-- Government
-- Income Tax
-- REST
-- Self Assessment
-- Tax
-- UK
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
-- [Postman Collection](collections/hmrc-vat-mtd.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hmrc-vat-mtd.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [HMRC UK Tax Authority Domain Vocabulary](https://apis.io/vocabularies/hmrc/hmrc-vocabulary/)
 
-### HMRC PAYE (Pay As You Earn) API
+#### Collections (9)
 
-The HMRC PAYE APIs enable payroll software to submit employer payroll data, retrieve tax codes and employee records, and manage PAYE submissions for Real Time Information (RTI) reporting.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- **Base URL:** `https://api.service.hmrc.gov.uk`
+- [HMRC VAT (Making Tax Digital) Liabilities API](https://apis.io/collections/hmrc/open-hmrc-liabilities-api/)
+- [HMRC VAT (Making Tax Digital) Liabilities Obligations API](https://apis.io/collections/hmrc/open-hmrc-obligations-api/)
+- [HMRC VAT (Making Tax Digital) Liabilities Payments API](https://apis.io/collections/hmrc/open-hmrc-payments-api/)
+- [HMRC VAT (Making Tax Digital) Liabilities Returns API](https://apis.io/collections/hmrc/open-hmrc-returns-api/)
+- [HMRC VAT (Making Tax Digital) API](https://apis.io/collections/hmrc/open-hmrc-vat-mtd/)
+- [HMRC VAT (Making Tax Digital) Liabilities API](https://apis.io/collections/hmrc/postman-hmrc-liabilities-api/)
+- [HMRC VAT (Making Tax Digital) Liabilities Obligations API](https://apis.io/collections/hmrc/postman-hmrc-obligations-api/)
+- [HMRC VAT (Making Tax Digital) Liabilities Payments API](https://apis.io/collections/hmrc/postman-hmrc-payments-api/)
+- [HMRC VAT (Making Tax Digital) Liabilities Returns API](https://apis.io/collections/hmrc/postman-hmrc-returns-api/)
 
-#### Tags
+#### Governance rules (1)
 
-- Government
-- PAYE
-- Payroll
-- REST
-- Tax
-- UK
+Spectral rulesets for the provider's contracts.
 
-#### Properties
+- [HMRC UK Tax Authority — jsonschema rules](https://apis.io/rules/hmrc/hmrc-jsonschema-spectral-rules/)
 
-- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
-- [Postman Collection](collections/hmrc-vat-mtd.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hmrc-vat-mtd.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (3)
 
-### HMRC Customs Declarations API
+Authentication, trust centre, and vulnerability disclosure.
 
-The HMRC Customs Declarations APIs enable customs software to submit import and export declarations, manage authorizations, and integrate with the UK Customs Declaration Service (CDS) for trade compliance.
+- [Hmrc Authentication](https://apis.io/security/hmrc/hmrc-authentication/)
+- [Hmrc Domain Security](https://apis.io/security/hmrc/hmrc-domain-security/)
+- [Hmrc Vulnerability Disclosure](https://apis.io/security/hmrc/hmrc-vulnerability-disclosure/)
 
-- **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- **Base URL:** `https://api.service.hmrc.gov.uk`
+#### OAuth scopes (1)
 
-#### Tags
+The permissions the API asks for.
 
-- Customs
-- Excise
-- Government
-- REST
-- Tax
-- UK
-- XML
+- [Hmrc Scopes](https://apis.io/scopes/hmrc/hmrc-scopes/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
-- [Postman Collection](collections/hmrc-vat-mtd.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hmrc-vat-mtd.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### HMRC Corporation Tax API
+- [Hmrc Plans Pricing](https://apis.io/plans/hmrc/hmrc-plans-pricing/)
 
-The HMRC Corporation Tax APIs enable accounting software to submit corporation tax returns, retrieve liabilities, manage payments, and access tax calculation data for UK businesses.
+#### Rate limits (1)
 
-- **Human URL:** [https://developer.service.hmrc.gov.uk/api-documentation/docs/api](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- **Base URL:** `https://api.service.hmrc.gov.uk`
+Published request limits.
 
-#### Tags
+- [Hmrc Rate Limits](https://apis.io/rate-limits/hmrc/hmrc-rate-limits/)
 
-- Business
-- Corporation Tax
-- Government
-- REST
-- Tax
-- UK
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
-- [Postman Collection](collections/hmrc-vat-mtd.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hmrc-vat-mtd.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Hmrc Finops](https://apis.io/finops/hmrc/hmrc-finops/)
 
-## Common Properties
+## Where to find this API
 
-- [GitHub Organization](https://github.com/hmrc)
-- [LinkedIn](https://www.linkedin.com/company/hmrc)
-- [Portal](https://developer.service.hmrc.gov.uk/)
-- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
-- [Authentication](https://developer.service.hmrc.gov.uk/api-documentation/docs/authorisation)
-- [Getting Started](https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub)
-- [Terms of Service](https://www.gov.uk/api-documentation/docs/terms-of-use)
-- [Status Page](https://api-platform-status.production.tax.service.gov.uk/)
-- [Support](https://developer.service.hmrc.gov.uk/)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.gov.uk/government/organisations/hm-revenue-customs)
-- [OpenAPI](openapi/hmrc-vat-mtd-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/hmrc-vat-return-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/hmrc-context.jsonld)
+- [Documentation](https://developer.service.hmrc.gov.uk/api-documentation/docs/api)
+- [Getting started](https://developer.service.hmrc.gov.uk/api-documentation/docs/using-the-hub)
+- [Support](https://developer.service.hmrc.gov.uk/)
+- [Blog](https://www.gov.uk/search/news-and-communications)
+- [Terms of service](https://www.gov.uk/api-documentation/docs/terms-of-use)
+- [GitHub](https://github.com/hmrc)
+- [Status](https://api-platform-status.production.tax.service.gov.uk/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 41.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 56.3 |
+| Contract governance | 9.8 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 5.3 |
+
+**Agent readiness 24.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 32.4** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hmrc/](https://apis.io/providers/hmrc/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for HMRC UK Tax Authority: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hmrc/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
